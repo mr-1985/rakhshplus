@@ -1,0 +1,238 @@
+﻿@page "{id}"
+@model MyShop.Web.Pages.Admin.Agent.AddAgentDocumentModel
+@using System.IO;
+
+@{
+    Layout = "Shared/_AdminLayout";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">بارگذاری مدارک نمایندگی </h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+
+<style>
+    .img-thumbnail {
+        max-height: 108px !important;
+        min-height: 108px;
+    }
+    .view-first img {
+    transition: all .2s linear;
+    width: 100%;
+}
+   .col-md-55 {
+       float:right !important;
+   }
+   .thumbnail {
+       height: 231px !important;
+    display: block;
+    padding: 0px;
+    margin-bottom: 23px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+}
+</style>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>
+                بارگزاری مدارک
+                <small>کاربر گرامی لطفا تصویر پشت و روی کارت ملی و همچنین تصویر کلیه صفحات شناسنامه را بارگزاری نمایید</small>
+            </h2>
+            <div class="clearfix">
+
+            </div>
+        </div>
+
+
+
+        <div class="x_content">
+
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                            <img id="imgBaseKarteMelliRuImg" src="/AgentDocuments/media.jpg" class="img-thumbnail" />
+                        }
+                        else
+                        {
+                            string extention = System.IO.Path.GetExtension(Model.ListofDocument.MojavezeKasbImage); 
+                            if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                            {
+                                <img id="imgMojavezeKasbImage" src="/AgentDocuments/@Model.ListofDocument.MojavezeKasbImage" class="img-thumbnail imgdefaultupload" />
+                            }
+                            else
+                            {
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.ListofDocument.MojavezeKasbImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                    <i class="fa fa-download"></i> دانلود
+                                </a>
+
+                            }
+
+                        }
+
+                        <div class="mask">
+                            <a href="/AgentDocuments/@Model.ListofDocument.MojavezeKasbImage" target="_blank">
+                                <p>تصویر مجوز کسب </p>
+                                <div class="tools tools-bottom">
+                                   <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p>تصویر مجوز کسب</p>
+                        <input id="MojavezeKasbImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('MojavezeKasbImage', 'SpanMojavezeKasbImageUpload','fileProgressMojavezeKasbImage');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanMojavezeKasbImageUpload"></span>
+                        <progress id="fileProgressMojavezeKasbImage" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script>
+
+
+          function uploadFiles(inputId, spanId,fileprocess) {
+
+                var input = document.getElementById(inputId);
+                var spanMessage = document.getElementById(spanId);
+                var fileprocessId = document.getElementById(fileprocess);
+
+                alert(input);
+
+
+                $(spanMessage).html('');
+                var files = input.files;
+                var formData = new FormData();
+
+                for (var i = 0; i != files.length; i++) {
+                    formData.append("files", files[i]);
+                }
+
+                $.ajax(
+                    {
+                        url: "/Home/Upload?term=" + inputId + "&paymentId=" +@ViewBag.OrderID+"",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        type: "POST",
+                        success: function (data) {
+
+                             $(fileprocessId).hide();
+                            if (data == "success") {
+                                $(spanMessage).html('فایل با موفقیت بارگزاری شد');
+                            }
+                            if (data == "maxfile") {
+                                $(spanMessage).html('حداکثر حجم فایل بایستی 30 مگ باشد');
+                            }
+                            if (data == "failed") {
+                                $(spanMessage).html('لطفا فایل مورد نظر را انتخاب کنید');
+                            }
+                        },
+                                                                    xhr: function() {
+                                                                        var fileXhr = $.ajaxSettings.xhr();
+                                                                        if (fileXhr.upload) {
+                                                                            $(fileprocessId).show();
+                                                                            fileXhr.upload.addEventListener("progress", function(e) {
+                                                                                if (e.lengthComputable) {
+                                                                                    $(fileprocessId).attr({
+                                                                                        value: e.loaded,
+                                                                                        max: e.total
+                                                                                    });
+                                                                                }
+                                                                            }, false);
+                                                                        }
+                                                                        return fileXhr;
+                                                                    },
+                                                                    error: function(err) {
+                                                                        alert(err.statusText);
+                                                                    }
+                    }
+                );
+            }
+
+            function readURL(input) {
+
+                debugger;
+                var name = $(input).attr("id");
+                ImageBase = "#imgBase" + name;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+
+                        $(ImageBase).attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+
+            }
+
+    function getFileExtension(filename)
+    {
+      var ext = /^.+\.([^.]+)$/.exec(filename);
+      return ext == null ? "" : ext[1];
+    }
+
+        $("#MojavezeKasbImage").change(function () {
+                readURL(this);
+            });
+
+        $("#ShenasnamehPageOneImg").change(function () {
+                readURL(this);
+            });
+        $("#FactoreKharidImg").change(function () {
+                readURL(this);
+            });
+        $("#FormeDarkhasteTashilatImg").change(function () {
+                readURL(this);
+            });
+        $("#FormeGharardadImg").change(function () {
+                readURL(this);
+            });
+        $("#FormePeyvasteGharardadImg").change(function () {
+                readURL(this);
+            });
+              $("#CheckeAghsatImg").change(function () {
+                readURL(this);
+            });
+               $("#CheckeTazminImg").change(function () {
+                readURL(this);
+            });
+               $("#ResideTahvileKalaImg").change(function () {
+                readURL(this);
+            });
+              $("#FactoreForushAgentImg").change(function () {
+                readURL(this);
+            });
+             $("#EjarehNamehImg").change(function () {
+            readURL(this);
+        });
+         $("#GavahieEshteghalImg").change(function () {
+            readURL(this);
+
+        });
+          $("#GardesheHesabImg").change(function () {
+            readURL(this);
+
+        });
+        
+</script>

@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "8c47856b-f2c0-448f-a26c-ec4a23c41413": {
+      "ProjectGuid": "8c47856b-f2c0-448f-a26c-ec4a23c41413",
+      "DisplayName": "MyShop.Web",
+      "ColorIndex": 0
+    },
+    "df2a85f0-df70-4072-8484-b59d49a9594f": {
+      "ProjectGuid": "df2a85f0-df70-4072-8484-b59d49a9594f",
+      "DisplayName": "MyShop.Core",
+      "ColorIndex": 1
+    },
+    "47952623-f82e-45d6-9f41-574cc32e6dde": {
+      "ProjectGuid": "47952623-f82e-45d6-9f41-574cc32e6dde",
+      "DisplayName": "MyShop.DataLayer",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 3
+}
