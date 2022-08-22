@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using MyShop.Core.Generators;
 using MyShop.Core.Services.Interfaces;
@@ -15,10 +16,12 @@ namespace MyShop.Core.Services
     public class AgentService : IAgentService
     {
         private MyShopContext _context;
+        private IHostingEnvironment _environment;
 
-        public AgentService(MyShopContext context)
+        public AgentService(MyShopContext context, IHostingEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
         public int AddAgent(Agent agent)
         {
@@ -34,161 +37,168 @@ namespace MyShop.Core.Services
             return _context.Agents.ToList();
         }
 
-        public int AddAgentDocument(AgentDocument document, IFormFile mojavezImg, IFormFile agahiTaasisImg
-            , IFormFile rooznameImg, IFormFile sherkatnameImg, IFormFile akharinagahiImg, IFormFile sardarImg,
-            IFormFile fishAbImg, IFormFile fishgazImg, IFormFile fishbarghImg, IFormFile fishtelephoneImg,
-            IFormFile noemalekiyatImg)
+        
+
+        public int AddDocumentOfAgent(int agentId, string fileName, string term)
         {
-            document.CreateDate = DateTime.Now;
-            document.MojavezeKasbImage = "media.jpg";
-            document.AgahiTaasisImage = "media.jpg";
-            document.NewsPaperImage = "media.jpg";
-            document.SherkatnameImage = "media.jpg";
-            document.AkharinAgahiTaaghiratImage = "media.jpg";
-            document.SarDarForoushgahImage = "media.jpg";
-            document.FishAbImage = "media.jpg";
-            document.FishGazImage = "media.jpg";
-            document.FishBarghImage = "media.jpg";
-            document.SanadNoeeMalekiatImage = "media.jpg";
-
-
-
-            if (mojavezImg != null)
+            var result = _context.AgentDocuments.FirstOrDefault(p => p.AgentId == agentId);
+            if (result != null)
             {
-                document.MojavezeKasbImage = GeneratorName.GenrateUniqeCode() + Path.GetExtension(mojavezImg.FileName);
-                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AgentDocuments", document.MojavezeKasbImage);
-
-                using (var stream = new FileStream(imagePath, FileMode.Create))
+                if (term == "MojavezeKasbImage")
                 {
-                    mojavezImg.CopyTo(stream);
+                    result.MojavezeKasbImage = fileName;
+                }
+                if (term == "SherkatnameImage")
+                {
+                    result.SherkatnameImage = fileName;
+                }
+                if (term == "NewsPaperImage")
+                {
+                    result.NewsPaperImage = fileName;
+                }
+                if (term == "AgahiTaasisImage")
+                {
+                    result.AgahiTaasisImage = fileName;
+                }
+                if (term == "AkharinAgahiTaaghiratImage")
+                {
+                    result.AkharinAgahiTaaghiratImage = fileName;
+                }
+                if (term == "SarDarForoushgahImage")
+                {
+                    result.SarDarForoushgahImage = fileName;
+                }
+                if (term == "FishAbImage")
+                {
+                    result.FishAbImage = fileName;
+                }
+                if (term == "FishGazImage")
+                {
+                    result.FishGazImage = fileName;
+                }
+                if (term == "FishBarghImage")
+                {
+                    result.FishBarghImage = fileName;
+                }
+                if (term == "FishTelePhoneImage")
+                {
+                    result.FishTelePhoneImage = fileName;
+                }
+                if (term == "SanadNoeeMalekiatImage")
+                {
+                    result.SanadNoeeMalekiatImage = fileName;
+                }
+                
+                _context.AgentDocuments.Update(result);
+                _context.SaveChanges();
+                return 1;
+            }
+            else
+            {
+                AgentDocument document = new AgentDocument();
+                document.AgentId = agentId;
+                if (term == "MojavezeKasbImage")
+                {
+                    document.MojavezeKasbImage = fileName;
+                }
+                if (term == "SherkatnameImage")
+                {
+                    document.SherkatnameImage = fileName;
+                }
+                if (term == "NewsPaperImage")
+                {
+                    document.NewsPaperImage = fileName;
+                }
+                if (term == "AgahiTaasisImage")
+                {
+                    document.AgahiTaasisImage = fileName;
+                }
+                if (term == "AkharinAgahiTaaghiratImage")
+                {
+                    document.AkharinAgahiTaaghiratImage = fileName;
+                }
+                if (term == "SarDarForoushgahImage")
+                {
+                    document.SarDarForoushgahImage = fileName;
+                }
+                if (term == "FishAbImage")
+                {
+                    document.FishAbImage = fileName;
+                }
+                if (term == "FishGazImage")
+                {
+                    document.FishGazImage = fileName;
+                }
+                if (term == "FishBarghImage")
+                {
+                    document.FishBarghImage = fileName;
+                }
+                if (term == "FishTelePhoneImage")
+                {
+                    document.FishTelePhoneImage = fileName;
+                }
+                if (term == "SanadNoeeMalekiatImage")
+                {
+                    document.SanadNoeeMalekiatImage = fileName;
+                }
+                
+
+                if (document.MojavezeKasbImage == null)
+                {
+                    document.MojavezeKasbImage = "defaultUpload.jpg";
+                }
+                if (document.SherkatnameImage == null)
+                {
+                    document.SherkatnameImage = "defaultUpload.jpg";
+                }
+                if (document.NewsPaperImage == null)
+                {
+                    document.NewsPaperImage = "defaultUpload.jpg";
+                }
+                if (document.AgahiTaasisImage == null)
+                {
+                    document.AgahiTaasisImage = "defaultUpload.jpg";
                 }
 
-            }
-
-            if (agahiTaasisImg != null)
-            {
-                document.AgahiTaasisImage = GeneratorName.GenrateUniqeCode() + Path.GetExtension(agahiTaasisImg.FileName);
-                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AgentDocuments", document.AgahiTaasisImage);
-
-                using (var stream = new FileStream(imagePath, FileMode.Create))
+                if (document.AkharinAgahiTaaghiratImage == null)
                 {
-                    agahiTaasisImg.CopyTo(stream);
+                    document.AkharinAgahiTaaghiratImage = "defaultUpload.jpg";
+                }
+                if (document.SarDarForoushgahImage == null)
+                {
+                    document.SarDarForoushgahImage = "defaultUpload.jpg";
+                }
+                if (document.FishAbImage == null)
+                {
+                    document.FishAbImage = "defaultUpload.jpg";
                 }
 
-            }
-
-            if (rooznameImg != null)
-            {
-                document.NewsPaperImage = GeneratorName.GenrateUniqeCode() + Path.GetExtension(rooznameImg.FileName);
-                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AgentDocuments", document.NewsPaperImage);
-
-                using (var stream = new FileStream(imagePath, FileMode.Create))
+                if (document.FishGazImage == null)
                 {
-                    rooznameImg.CopyTo(stream);
+                    document.FishGazImage = "defaultUpload.jpg";
                 }
 
-            }
-
-            if (sherkatnameImg != null)
-            {
-                document.SherkatnameImage = GeneratorName.GenrateUniqeCode() + Path.GetExtension(sherkatnameImg.FileName);
-                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AgentDocuments", document.SherkatnameImage);
-
-                using (var stream = new FileStream(imagePath, FileMode.Create))
+                if (document.FishBarghImage == null)
                 {
-                    sherkatnameImg.CopyTo(stream);
+                    document.FishBarghImage = "defaultUpload.jpg";
                 }
 
-            }
-
-            if (akharinagahiImg != null)
-            {
-                document.AkharinAgahiTaaghiratImage = GeneratorName.GenrateUniqeCode() + Path.GetExtension(akharinagahiImg.FileName);
-                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AgentDocuments", document.AkharinAgahiTaaghiratImage);
-
-                using (var stream = new FileStream(imagePath, FileMode.Create))
+                if (document.FishTelePhoneImage == null)
                 {
-                    akharinagahiImg.CopyTo(stream);
+                    document.FishTelePhoneImage = "defaultUpload.jpg";
                 }
-
-            }
-
-            if (sardarImg != null)
-            {
-                document.SarDarForoushgahImage = GeneratorName.GenrateUniqeCode() + Path.GetExtension(sardarImg.FileName);
-                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AgentDocuments", document.SarDarForoushgahImage);
-
-                using (var stream = new FileStream(imagePath, FileMode.Create))
+                if (document.SanadNoeeMalekiatImage == null)
                 {
-                    sardarImg.CopyTo(stream);
+                    document.SanadNoeeMalekiatImage = "defaultUpload.jpg";
                 }
+               
 
+
+                _context.AgentDocuments.Add(document);
+                _context.SaveChanges();
+                return 1;
             }
 
-            if (fishAbImg != null)
-            {
-                document.FishAbImage = GeneratorName.GenrateUniqeCode() + Path.GetExtension(fishAbImg.FileName);
-                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AgentDocuments", document.FishAbImage);
-
-                using (var stream = new FileStream(imagePath, FileMode.Create))
-                {
-                    fishAbImg.CopyTo(stream);
-                }
-
-            }
-
-            if (fishgazImg != null)
-            {
-                document.FishGazImage = GeneratorName.GenrateUniqeCode() + Path.GetExtension(fishgazImg.FileName);
-                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AgentDocuments", document.FishGazImage);
-
-                using (var stream = new FileStream(imagePath, FileMode.Create))
-                {
-                    fishgazImg.CopyTo(stream);
-                }
-
-            }
-
-            if (fishbarghImg != null)
-            {
-                document.FishBarghImage = GeneratorName.GenrateUniqeCode() + Path.GetExtension(fishbarghImg.FileName);
-                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AgentDocuments", document.FishBarghImage);
-
-                using (var stream = new FileStream(imagePath, FileMode.Create))
-                {
-                    fishbarghImg.CopyTo(stream);
-                }
-
-            }
-
-            if (noemalekiyatImg != null)
-            {
-                document.SanadNoeeMalekiatImage = GeneratorName.GenrateUniqeCode() + Path.GetExtension(noemalekiyatImg.FileName);
-                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AgentDocuments", document.SanadNoeeMalekiatImage);
-
-                using (var stream = new FileStream(imagePath, FileMode.Create))
-                {
-                    noemalekiyatImg.CopyTo(stream);
-                }
-
-            }
-
-            if (fishtelephoneImg != null)
-            {
-                document.FishTelePhoneImage = GeneratorName.GenrateUniqeCode() + Path.GetExtension(fishtelephoneImg.FileName);
-                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AgentDocuments", document.FishTelePhoneImage);
-
-                using (var stream = new FileStream(imagePath, FileMode.Create))
-                {
-                    fishtelephoneImg.CopyTo(stream);
-                }
-
-            }
-
-            _context.AgentDocuments.Add(document);
-            _context.SaveChanges();
-
-            return document.AgentDocumentId;
         }
 
         public AgentDocument GetDocumentByAgentId(int agentId)

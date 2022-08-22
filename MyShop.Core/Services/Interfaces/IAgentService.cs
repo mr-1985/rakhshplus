@@ -12,10 +12,8 @@ namespace MyShop.Core.Services.Interfaces
     {
         int AddAgent(Agent agent);
         List<Agent> GetAllGent();
-        int AddAgentDocument( AgentDocument document,IFormFile mojavezImg,IFormFile agahiTaasisImg
-        ,IFormFile rooznameImg,IFormFile sherkatnameImg,IFormFile akharinagahiImg,IFormFile sardarImg,
-        IFormFile fishAbImg,IFormFile fishgazImg,IFormFile fishbarghImg,IFormFile fishtelephoneImg,
-        IFormFile noemalekiyatImg);
+        
+        int AddDocumentOfAgent(int agentId, string fileName, string term);
 
         AgentDocument GetDocumentByAgentId(int agentId);
     }

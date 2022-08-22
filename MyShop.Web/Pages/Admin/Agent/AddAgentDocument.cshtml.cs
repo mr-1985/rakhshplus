@@ -25,24 +25,26 @@ namespace MyShop.Web.Pages.Admin.Agent
             Document = new AgentDocument();
             Document.AgentId = id;
 
-            ListofDocument = _agentService.GetDocumentByAgentId(id);
-        }
+            ViewData["AgentId"] = id;
 
-        public IActionResult OnPost(IFormFile imgMojavez,IFormFile imgSherkatname,IFormFile imgFishab,IFormFile imgFishtelephone,
-            IFormFile imgAgahitaasis,IFormFile imgAkharintaaghirat,IFormFile imgFishgaz,IFormFile imgSanadNoe,
-            IFormFile imgRoozname,IFormFile imgSardarforoshgah,IFormFile imgFishbargh)
-        {
-            if (!ModelState.IsValid)
+            var document = _agentService.GetDocumentByAgentId(id);
+            if (document!=null)
             {
-                return Page();
+                ListofDocument = document;
             }
-
-            _agentService.AddAgentDocument(Document, imgMojavez, imgAgahitaasis, imgRoozname, imgSherkatname,
-                imgAkharintaaghirat, imgSardarforoshgah, imgFishab, imgFishgaz,
-                imgFishbargh, imgFishtelephone, imgSanadNoe);
-
-            return RedirectToPage("Index");
         }
+
+        //public IActionResult OnPost(IFormFile imgMojavez,IFormFile imgSherkatname,IFormFile imgFishab,IFormFile imgFishtelephone,
+        //    IFormFile imgAgahitaasis,IFormFile imgAkharintaaghirat,IFormFile imgFishgaz,IFormFile imgSanadNoe,
+        //    IFormFile imgRoozname,IFormFile imgSardarforoshgah,IFormFile imgFishbargh)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Page();
+        //    }
+
+        //    return RedirectToPage("Index");
+        //}
 
 
     }

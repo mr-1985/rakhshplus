@@ -1,0 +1,723 @@
+﻿@model Lising.DataLayer.Models.OrdersDoc
+@using Lising.Core.Convertors
+@{
+    ViewData["Title"] = "Upload";
+    Layout = "~/Areas/UserPanel/Views/Shared/_UserPanel.cshtml";
+}
+
+
+<style>
+    .img-thumbnail {
+        max-height: 108px !important;
+        min-height: 108px;
+    }
+
+    .view-first img {
+        transition: all .2s linear;
+        width: 100%;
+    }
+
+    .col-md-55 {
+        float: right !important;
+    }
+
+    .thumbnail {
+        height: 231px !important;
+        display: block;
+        padding: 0px;
+        margin-bottom: 23px;
+        line-height: 1.42857143;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        -webkit-transition: border .2s ease-in-out;
+        -o-transition: border .2s ease-in-out;
+        transition: border .2s ease-in-out;
+    }
+</style>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>
+                بارگزاری مدارک
+                <small>کاربر گرامی لطفا تصویر پشت و روی کارت ملی و همچنین تصویر کلیه صفحات شناسنامه را بارگزاری نمایید</small>
+            </h2>
+
+
+
+
+            <div class="clearfix"></div>
+        </div>
+
+
+
+        <div class="x_content">
+
+
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                        <img id="imgBaseKarteMelliRuImg" src="/OrdersDoc/defaultUpload.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        string extention = StringExtensions.GetExtensionFile(Model.KarteMelliRuImg);
+                        if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                        {
+                        <img id="imgBaseKarteMelliRuImg" src="/OrdersDoc/@Model.KarteMelliRuImg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        <a class="btn btn-app" href="/OrdersDoc/@Model.KarteMelliRuImg" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                            <i class="fa fa-download"></i> دانلود
+                        </a>
+
+                        }
+
+                        }
+
+                        <div class="mask">
+                            <a href="/OrdersDoc/@Model.KarteMelliRuImg" target="_blank">
+                                <p>تصویر کارت ملی</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p>تصویر کارت ملی</p>
+                        <input id="KarteMelliRuImg" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('KarteMelliRuImg', 'SpanKarteMelliRuImgUpload','fileProgressKarteMelliRuImg');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanKarteMelliRuImgUpload"></span>
+                        <progress id="fileProgressKarteMelliRuImg" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                        <img id="imgBaseShenasnamehPageOneImg" src="/OrdersDoc/defaultUpload.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        string extention = StringExtensions.GetExtensionFile(Model.ShenasnamehPageOneImg);
+                        if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                        {
+                        <img id="imgBaseShenasnamehPageOneImg" src="/OrdersDoc/@Model.ShenasnamehPageOneImg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        <a class="btn btn-app" href="/OrdersDoc/@Model.ShenasnamehPageOneImg" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                            <i class="fa fa-download"></i> دانلود
+                        </a>
+
+                        }
+
+                        }
+
+                        <div class="mask">
+                            <a href="/OrdersDoc/@Model.ShenasnamehPageOneImg" target="_blank">
+                                <p>تصویر صفحه اول شناسنامه</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p> تصویر صفحه اول شناسنامه</p>
+                        <input id="ShenasnamehPageOneImg" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر" onclick="uploadFiles('ShenasnamehPageOneImg', 'SpanShenasnamehPageOneImgUpload','fileProgressShenasnamehPageOneImg');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanShenasnamehPageOneImgUpload"></span>
+                        <progress id="fileProgressShenasnamehPageOneImg" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                        <img id="imgBaseFormeDarkhasteTashilatImg" src="/OrdersDoc/defaultUpload.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+
+                        else
+                        {
+                        string extention = StringExtensions.GetExtensionFile(Model.FormeDarkhasteTashilatImg);
+                        if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                        {
+                        <img id="imgBaseFormeDarkhasteTashilatImg" src="/OrdersDoc/@Model.FormeDarkhasteTashilatImg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        <a class="btn btn-app" href="/OrdersDoc/@Model.FormeDarkhasteTashilatImg" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                            <i class="fa fa-download"></i> دانلود
+                        </a>
+
+                        }
+
+                        }
+
+                        <div class="mask">
+                            <a href="/OrdersDoc/@Model.FormeDarkhasteTashilatImg" target="_blank">
+                                <p>  فرم درخواست تسهیلات</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p>   فرم درخواست تسهیلات</p>
+                        <input id="FormeDarkhasteTashilatImg" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر" onclick="uploadFiles('FormeDarkhasteTashilatImg', 'SpanFormeDarkhasteTashilatImgUpload','fileProgressFormeDarkhasteTashilatImg');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanFormeDarkhasteTashilatImgUpload"></span>
+                        <progress id="fileProgressFormeDarkhasteTashilatImg" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                        <img id="imgBaseFormeGharardadImg" src="/OrdersDoc/defaultUpload.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+
+                        else
+                        {
+                        string extention = StringExtensions.GetExtensionFile(Model.FormeGharardadImg);
+                        if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                        {
+                        <img id="imgBaseFormeGharardadImg" src="/OrdersDoc/@Model.FormeGharardadImg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        <a class="btn btn-app" href="/OrdersDoc/@Model.FormeGharardadImg" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                            <i class="fa fa-download"></i> دانلود
+                        </a>
+
+                        }
+
+                        }
+
+                        <div class="mask">
+                            <a href="/OrdersDoc/@Model.FormeGharardadImg" target="_blank">
+                                <p>   فرم قرارداد</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p>    فرم قرارداد</p>
+                        <input id="FormeGharardadImg" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر" onclick="uploadFiles('FormeGharardadImg', 'SpanFormeGharardadImgUpload','fileProgressFormeGharardadImg');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanFormeGharardadImgUpload"></span>
+                        <progress id="fileProgressFormeGharardadImg" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                        <img id="imgBaseFormePeyvasteGharardadImg" src="/OrdersDoc/defaultUpload.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+
+                        else
+                        {
+                        string extention = StringExtensions.GetExtensionFile(Model.FormePeyvasteGharardadImg);
+                        if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                        {
+                        <img id="imgBaseFormePeyvasteGharardadImg" src="/OrdersDoc/@Model.FormePeyvasteGharardadImg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        <a class="btn btn-app" href="/OrdersDoc/@Model.FormePeyvasteGharardadImg" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                            <i class="fa fa-download"></i> دانلود
+                        </a>
+
+                        }
+
+                        }
+
+                        <div class="mask">
+                            <a href="/OrdersDoc/@Model.FormePeyvasteGharardadImg" target="_blank">
+                                <p>  پیوست قرارداد</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p>    پیوست قرارداد</p>
+                        <input id="FormePeyvasteGharardadImg" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر" onclick="uploadFiles('FormePeyvasteGharardadImg', 'SpanFormePeyvasteGharardadImgUpload','fileProgressFormePeyvasteGharardadImg');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanFormePeyvasteGharardadImgUpload"></span>
+                        <progress id="fileProgressFormePeyvasteGharardadImg" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                        <img id="imgBaseCheckeAghsatImg" src="/OrdersDoc/defaultUpload.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+
+                        else
+                        {
+                        string extention = StringExtensions.GetExtensionFile(Model.CheckeAghsatImg);
+                        if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                        {
+                        <img id="imgBaseCheckeAghsatImg" src="/OrdersDoc/@Model.CheckeAghsatImg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        <a class="btn btn-app" href="/OrdersDoc/@Model.CheckeAghsatImg" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                            <i class="fa fa-download"></i> دانلود
+                        </a>
+
+                        }
+
+                        }
+                        <div class="mask">
+                            <a href="/OrdersDoc/@Model.CheckeAghsatImg" target="_blank">
+                                <p>   چک اقساط</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p>  چک اقساط</p>
+                        <input id="CheckeAghsatImg" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp,application/pdf" />
+                        <input type="button" value="آپلود تصویر" onclick="uploadFiles('CheckeAghsatImg', 'SpanCheckeAghsatImgUpload','fileProgressCheckeAghsatImg');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanCheckeAghsatImgUpload"></span>
+                        <progress id="fileProgressCheckeAghsatImg" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                        <img id="imgBaseCheckeTazminImg" src="/OrdersDoc/defaultUpload.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+
+
+                        else
+                        {
+                        string extention = StringExtensions.GetExtensionFile(Model.CheckeTazminImg);
+                        if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                        {
+                        <img id="imgBaseCheckeTazminImg" src="/OrdersDoc/@Model.CheckeTazminImg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        <a class="btn btn-app" href="/OrdersDoc/@Model.CheckeTazminImg" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                            <i class="fa fa-download"></i> دانلود
+                        </a>
+
+                        }
+
+                        }
+                        <div class="mask">
+                            <a href="/OrdersDoc/@Model.CheckeTazminImg" target="_blank">
+                                <p>   چک تضمین</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p> چک تضمین</p>
+                        <input id="CheckeTazminImg" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر" onclick="uploadFiles('CheckeTazminImg', 'SpanCheckeTazminImgUpload','fileProgressCheckeTazminImg');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanCheckeTazminImgUpload"></span>
+                        <progress id="fileProgressCheckeTazminImg" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                        <img id="imgBaseResideTahvileKalaImg" src="/OrdersDoc/defaultUpload.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+
+                        else
+                        {
+                        string extention = StringExtensions.GetExtensionFile(Model.ResideTahvileKalaImg);
+                        if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                        {
+                        <img id="imgBaseResideTahvileKalaImg" src="/OrdersDoc/@Model.ResideTahvileKalaImg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        <a class="btn btn-app" href="/OrdersDoc/@Model.ResideTahvileKalaImg" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                            <i class="fa fa-download"></i> دانلود
+                        </a>
+
+                        }
+
+                        }
+                        <div class="mask">
+                            <a href="/OrdersDoc/@Model.ResideTahvileKalaImg" target="_blank">
+                                <p>   رسید تحویل کالا</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p> رسید تحویل کالا</p>
+                        <input id="ResideTahvileKalaImg" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر" onclick="uploadFiles('ResideTahvileKalaImg', 'SpanResideTahvileKalaImgUpload','fileProgressResideTahvileKalaImg');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanResideTahvileKalaImgUpload"></span>
+                        <progress id="fileProgressResideTahvileKalaImg" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                        <img id="imgBaseFactoreForushAgentImg" src="/OrdersDoc/defaultUpload.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+
+                        else
+                        {
+                        string extention = StringExtensions.GetExtensionFile(Model.FactoreForushAgentImg);
+                        if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                        {
+                        <img id="imgBaseFactoreForushAgentImg" src="/OrdersDoc/@Model.FactoreForushAgentImg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        <a class="btn btn-app" href="/OrdersDoc/@Model.FactoreForushAgentImg" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                            <i class="fa fa-download"></i> دانلود
+                        </a>
+
+                        }
+
+                        }
+                        <div class="mask">
+                            <a href="/OrdersDoc/@Model.FactoreForushAgentImg" target="_blank">
+                                <p>  فاکتور فروش فروشگاه</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p> فاکتور فروش فروشگاه</p>
+                        <input id="FactoreForushAgentImg" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر" onclick="uploadFiles('FactoreForushAgentImg', 'SpanFactoreForushAgentImgUpload','fileProgressFactoreForushAgentImg');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanFactoreForushAgentImgUpload"></span>
+                        <progress id="fileProgressFactoreForushAgentImg" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                        <img id="imgBaseEjarehNamehImg" src="/OrdersDoc/defaultUpload.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+
+                        else
+                        {
+                        string extention = StringExtensions.GetExtensionFile(Model.EjarehNamehImg);
+                        if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                        {
+                        <img id="imgBaseEjarehNamehImg" src="/OrdersDoc/@Model.EjarehNamehImg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        <a class="btn btn-app" href="/OrdersDoc/@Model.EjarehNamehImg" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                            <i class="fa fa-download"></i> دانلود
+                        </a>
+
+                        }
+
+                        }
+                        <div class="mask">
+                            <a href="/OrdersDoc/@Model.EjarehNamehImg" target="_blank">
+                                <p>  سند یا اجاره نامه</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p> سند یا اجاره نامه</p>
+                        <input id="EjarehNamehImg" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر" onclick="uploadFiles('EjarehNamehImg', 'SpanEjarehNamehImgUpload','fileProgressEjarehNamehImg');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanEjarehNamehImgUpload"></span>
+                        <progress id="fileProgressEjarehNamehImg" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                        <img id="imgBaseGavahieEshteghalImg" src="/OrdersDoc/defaultUpload.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+
+                        else
+                        {
+                        string extention = StringExtensions.GetExtensionFile(Model.GavahieEshteghalImg);
+                        if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                        {
+                        <img id="imgBaseGavahieEshteghalImg" src="/OrdersDoc/@Model.GavahieEshteghalImg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        <a class="btn btn-app" href="/OrdersDoc/@Model.GavahieEshteghalImg" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                            <i class="fa fa-download"></i> دانلود
+                        </a>
+
+                        }
+
+                        }
+                        <div class="mask">
+                            <a href="/OrdersDoc/@Model.GavahieEshteghalImg" target="_blank">
+                                <p>   مدارک شغلی</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p> مدارک شغلی</p>
+                        <input id="GavahieEshteghalImg" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر" onclick="uploadFiles('GavahieEshteghalImg', 'SpanGavahieEshteghalImgUpload','fileProgressGavahieEshteghalImg');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanGavahieEshteghalImgUpload"></span>
+                        <progress id="fileProgressGavahieEshteghalImg" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model == null)
+                        {
+                        <img id="imgBaseGardesheHesabImg" src="/OrdersDoc/defaultUpload.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+
+                        else
+                        {
+                        string extention = StringExtensions.GetExtensionFile(Model.GardesheHesabImg);
+                        if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                        {
+                        <img id="imgBaseGardesheHesabImg" src="/OrdersDoc/@Model.GardesheHesabImg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                        <a class="btn btn-app" href="/OrdersDoc/@Model.GardesheHesabImg" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                            <i class="fa fa-download"></i> دانلود
+                        </a>
+
+                        }
+
+                        }
+                        <div class="mask">
+                            <a href="/OrdersDoc/@Model.GardesheHesabImg" target="_blank">
+                                <p>   گردش حساب</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <p> گردش حساب</p>
+                        <input id="GardesheHesabImg" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر" onclick="uploadFiles('GardesheHesabImg', 'SpanGardesheHesabImgUpload','fileProgressGardesheHesabImg');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanGardesheHesabImgUpload"></span>
+                        <progress id="fileProgressGardesheHesabImg" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+
+
+          function uploadFiles(inputId, spanId,fileprocess) {
+
+
+
+
+                var input = document.getElementById(inputId);
+                var spanMessage = document.getElementById(spanId);
+                var fileprocessId = document.getElementById(fileprocess);
+
+                $(spanMessage).html('');
+                var files = input.files;
+                var formData = new FormData();
+
+                for (var i = 0; i != files.length; i++) {
+                    formData.append("files", files[i]);
+                }
+
+                $.ajax(
+                    {
+                        url: "/UserPanel/PayaReceipt/UploadDocs?term=" + inputId + "&paymentId=" +@ViewBag.OrderID+"",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        type: "POST",
+                        success: function (data) {
+
+                             $(fileprocessId).hide();
+                            if (data == "success") {
+                                $(spanMessage).html('فایل با موفقیت بارگزاری شد');
+                            }
+                            if (data == "maxfile") {
+                                $(spanMessage).html('حداکثر حجم فایل بایستی 30 مگ باشد');
+                            }
+                            if (data == "failed") {
+                                $(spanMessage).html('لطفا فایل مورد نظر را انتخاب کنید');
+                            }
+                        },
+                                                                    xhr: function() {
+                                                                        var fileXhr = $.ajaxSettings.xhr();
+                                                                        if (fileXhr.upload) {
+                                                                            $(fileprocessId).show();
+                                                                            fileXhr.upload.addEventListener("progress", function(e) {
+                                                                                if (e.lengthComputable) {
+                                                                                    $(fileprocessId).attr({
+                                                                                        value: e.loaded,
+                                                                                        max: e.total
+                                                                                    });
+                                                                                }
+                                                                            }, false);
+                                                                        }
+                                                                        return fileXhr;
+                                                                    },
+                                                                    error: function(err) {
+                                                                        alert(err.statusText);
+                                                                    }
+                    }
+                );
+            }
+
+            function readURL(input) {
+
+                debugger;
+                var name = $(input).attr("id");
+                ImageBase = "#imgBase" + name;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+
+                        $(ImageBase).attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+
+            }
+
+    function getFileExtension(filename)
+    {
+      var ext = /^.+\.([^.]+)$/.exec(filename);
+      return ext == null ? "" : ext[1];
+    }
+
+        $("#KarteMelliRuImg").change(function () {
+                readURL(this);
+            });
+
+        $("#ShenasnamehPageOneImg").change(function () {
+                readURL(this);
+            });
+        $("#FactoreKharidImg").change(function () {
+                readURL(this);
+            });
+        $("#FormeDarkhasteTashilatImg").change(function () {
+                readURL(this);
+            });
+        $("#FormeGharardadImg").change(function () {
+                readURL(this);
+            });
+        $("#FormePeyvasteGharardadImg").change(function () {
+                readURL(this);
+            });
+              $("#CheckeAghsatImg").change(function () {
+                readURL(this);
+            });
+               $("#CheckeTazminImg").change(function () {
+                readURL(this);
+            });
+               $("#ResideTahvileKalaImg").change(function () {
+                readURL(this);
+            });
+              $("#FactoreForushAgentImg").change(function () {
+                readURL(this);
+            });
+             $("#EjarehNamehImg").change(function () {
+            readURL(this);
+        });
+         $("#GavahieEshteghalImg").change(function () {
+            readURL(this);
+
+        });
+          $("#GardesheHesabImg").change(function () {
+            readURL(this);
+
+        });
+
+</script>
