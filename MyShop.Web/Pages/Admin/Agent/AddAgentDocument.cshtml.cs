@@ -18,34 +18,17 @@ namespace MyShop.Web.Pages.Admin.Agent
 
         public AgentDocument ListofDocument { get; set; }
 
-        [BindProperty]
+        
         public AgentDocument Document { get; set; }
         public void OnGet(int id)
         {
-            Document = new AgentDocument();
-            Document.AgentId = id;
+            //Document = new AgentDocument();
+            //Document.AgentId = id;
 
             ViewData["AgentId"] = id;
 
-            var document = _agentService.GetDocumentByAgentId(id);
-            if (document!=null)
-            {
-                ListofDocument = document;
-            }
+            ListofDocument = _agentService.GetDocumentByAgentId(id);
         }
-
-        //public IActionResult OnPost(IFormFile imgMojavez,IFormFile imgSherkatname,IFormFile imgFishab,IFormFile imgFishtelephone,
-        //    IFormFile imgAgahitaasis,IFormFile imgAkharintaaghirat,IFormFile imgFishgaz,IFormFile imgSanadNoe,
-        //    IFormFile imgRoozname,IFormFile imgSardarforoshgah,IFormFile imgFishbargh)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return Page();
-        //    }
-
-        //    return RedirectToPage("Index");
-        //}
-
 
     }
 }

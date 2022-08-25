@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Hosting;
 using MyShop.Core.Services.Interfaces;
 
@@ -127,6 +128,26 @@ namespace MyShop.Web.Controllers
 
 
             return new JsonResult("success");
+        }
+
+        public IActionResult DeleteAgent(string[] agentId)
+        {
+            foreach (string id in agentId)
+            {
+                _agentService.DeleteAgent(Convert.ToInt32(id));
+            }
+
+            return Json(" Diesel Generators Successfully Deleted.");
+        }
+
+        public IActionResult GetCityByOstanId(int id)
+        {
+            List<SelectListItem> list = new List<SelectListItem>()
+            {
+                new SelectListItem(){Text = "انتخاب کنید" , Value = ""}
+            };
+            list.AddRange(_agentService.GetCityByProvinceIDSelectList(id));
+            return Json(new SelectList(list, "Value", "Text"));
         }
     }
 }

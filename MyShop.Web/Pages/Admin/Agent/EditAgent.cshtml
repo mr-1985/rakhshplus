@@ -1,0 +1,117 @@
+﻿@page "{id}"
+@model MyShop.Web.Pages.Admin.Agent.EditAgentModel
+@{
+    ViewData["Title"] = "ویرایش نمایندگی";
+    Layout = "Shared/_AdminLayout";
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>
+            اطلاعات نمایندگی
+
+        </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            @*<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                <li>
+                <a href="#">تنظیمات 1</a>
+                </li>
+                <li>
+                <a href="#">تنظیمات 2</a>
+                </li>
+                </ul>
+                </li>*@
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Agent.AgentId"/>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                    <div class="form-group has-feedback">
+                        <input asp-for="Agent.Name" type="text" class="form-control has-feedback-left" required="" placeholder="نام">
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Agent.Name" class="text-danger"></span>
+                    </div>
+
+                   @* <div class="form-group has-feedback">
+                        <input asp-for="Agent.Ostan" type="text" class="form-control has-feedback-left" required="" placeholder="استان">
+                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Agent.Ostan" class="text-danger"></span>
+                    </div>*@
+
+                    <div class="form-group has-feedback">
+                        <input asp-for="Agent.City" type="text" class="form-control has-feedback-left" required="" placeholder="شهر">
+                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Agent.City" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <input asp-for="Agent.Email" type="email" class="form-control has-feedback-left" required="" placeholder="ایمیل ">
+                        <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Agent.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <textarea asp-for="Agent.Address" type="text" class="form-control has-feedback-left" required="" placeholder="آدرس "></textarea>
+                        @*<textarea id="textarea" required="required" placeholder="آدرس " name="textarea" class="form-control col-md-7 col-xs-12"></textarea>*@
+                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Agent.Address" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                    <div class="form-group has-feedback">
+                        <input asp-for="Agent.PostalCode" type="text" class="form-control has-feedback-left" required="" placeholder="کدپستی">
+                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Agent.PostalCode" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <input asp-for="Agent.TelePhone" type="text" class="form-control has-feedback-left" required="" placeholder="تلفن ثابت">
+                        <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Agent.TelePhone" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <input asp-for="Agent.Fax" type="text" class="form-control has-feedback-left" placeholder="نمابر">
+                        <span class="fa fa-fax form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Agent.Fax" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <input asp-for="Agent.WebSite" type="text" class="form-control has-feedback-left" placeholder=" وب سایت">
+                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Agent.WebSite" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <input asp-for="Agent.NoeMalekiat" type="text" class="form-control has-feedback-left" placeholder="نوع مالکیت ">
+                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Agent.NoeMalekiat" class="text-danger"></span>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-9 col-sm-9 col-xs-12 ">
+                    <a asp-page="Index" class="btn btn-primary">انصراف</a>
+                    <button type="submit" class="btn btn-warning">ویرایش</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

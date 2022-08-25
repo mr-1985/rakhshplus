@@ -27,19 +27,30 @@ namespace MyShop.DataLayer.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("ContractId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDtae")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Fax")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -48,26 +59,38 @@ namespace MyShop.DataLayer.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("NoeMalekiat")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Ostan")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("TelePhone")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("WebSite")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("AgentId");
+
+                    b.HasIndex("ContractId");
 
                     b.ToTable("Agents");
                 });
@@ -140,6 +163,62 @@ namespace MyShop.DataLayer.Migrations
                     b.ToTable("AgentDocuments");
                 });
 
+            modelBuilder.Entity("MyShop.DataLayer.Entities.City", b =>
+                {
+                    b.Property<int>("CityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProvinceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CityId");
+
+                    b.HasIndex("ProvinceId");
+
+                    b.ToTable("City");
+                });
+
+            modelBuilder.Entity("MyShop.DataLayer.Entities.Contract", b =>
+                {
+                    b.Property<int>("ContractId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AgentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContractNumber")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContractId");
+
+                    b.ToTable("Contracts");
+                });
+
             modelBuilder.Entity("MyShop.DataLayer.Entities.Item", b =>
                 {
                     b.Property<int>("ItemId")
@@ -156,6 +235,110 @@ namespace MyShop.DataLayer.Migrations
                     b.HasKey("ItemId");
 
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("MyShop.DataLayer.Entities.Operative", b =>
+                {
+                    b.Property<int>("OperativeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("ContractId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDtae")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Fax")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("NoeMalekiat")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Ostan")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("TelePhone")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("WebSite")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("OperativeId");
+
+                    b.HasIndex("ContractId");
+
+                    b.ToTable("Operatives");
+                });
+
+            modelBuilder.Entity("MyShop.DataLayer.Entities.OperativeDocument", b =>
+                {
+                    b.Property<int>("OperativeDocumentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("OperativeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SarDarbForoushgahImage")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("OperativeDocumentId");
+
+                    b.HasIndex("OperativeId")
+                        .IsUnique();
+
+                    b.ToTable("OperativeDocuments");
                 });
 
             modelBuilder.Entity("MyShop.DataLayer.Entities.Order", b =>
@@ -257,6 +440,22 @@ namespace MyShop.DataLayer.Migrations
                         .IsUnique();
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("MyShop.DataLayer.Entities.Province", b =>
+                {
+                    b.Property<int>("ProvinceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ProvinceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProvinceId");
+
+                    b.ToTable("Province");
                 });
 
             modelBuilder.Entity("MyShop.DataLayer.Entities.Role", b =>
@@ -370,6 +569,9 @@ namespace MyShop.DataLayer.Migrations
                     b.Property<string>("NationalCode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OperativeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -399,6 +601,8 @@ namespace MyShop.DataLayer.Migrations
 
                     b.HasIndex("AgentId");
 
+                    b.HasIndex("OperativeId");
+
                     b.ToTable("Users");
                 });
 
@@ -424,6 +628,17 @@ namespace MyShop.DataLayer.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("MyShop.DataLayer.Entities.Agent", b =>
+                {
+                    b.HasOne("MyShop.DataLayer.Entities.Contract", "Contract")
+                        .WithMany("Agents")
+                        .HasForeignKey("ContractId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contract");
+                });
+
             modelBuilder.Entity("MyShop.DataLayer.Entities.AgentDocument", b =>
                 {
                     b.HasOne("MyShop.DataLayer.Entities.Agent", "Agent")
@@ -433,6 +648,37 @@ namespace MyShop.DataLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("Agent");
+                });
+
+            modelBuilder.Entity("MyShop.DataLayer.Entities.City", b =>
+                {
+                    b.HasOne("MyShop.DataLayer.Entities.Province", null)
+                        .WithMany("Cities")
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MyShop.DataLayer.Entities.Operative", b =>
+                {
+                    b.HasOne("MyShop.DataLayer.Entities.Contract", "Contract")
+                        .WithMany("Operatives")
+                        .HasForeignKey("ContractId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contract");
+                });
+
+            modelBuilder.Entity("MyShop.DataLayer.Entities.OperativeDocument", b =>
+                {
+                    b.HasOne("MyShop.DataLayer.Entities.Operative", "Operative")
+                        .WithOne("OperativeDocument")
+                        .HasForeignKey("MyShop.DataLayer.Entities.OperativeDocument", "OperativeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Operative");
                 });
 
             modelBuilder.Entity("MyShop.DataLayer.Entities.Order", b =>
@@ -508,6 +754,10 @@ namespace MyShop.DataLayer.Migrations
                         .WithMany("Users")
                         .HasForeignKey("AgentId");
 
+                    b.HasOne("MyShop.DataLayer.Entities.Operative", null)
+                        .WithMany("Users")
+                        .HasForeignKey("OperativeId");
+
                     b.Navigation("Agent");
                 });
 
@@ -537,9 +787,23 @@ namespace MyShop.DataLayer.Migrations
                     b.Navigation("Users");
                 });
 
+            modelBuilder.Entity("MyShop.DataLayer.Entities.Contract", b =>
+                {
+                    b.Navigation("Agents");
+
+                    b.Navigation("Operatives");
+                });
+
             modelBuilder.Entity("MyShop.DataLayer.Entities.Item", b =>
                 {
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("MyShop.DataLayer.Entities.Operative", b =>
+                {
+                    b.Navigation("OperativeDocument");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("MyShop.DataLayer.Entities.Order", b =>
@@ -552,6 +816,11 @@ namespace MyShop.DataLayer.Migrations
                     b.Navigation("Permissions");
 
                     b.Navigation("RolePermissions");
+                });
+
+            modelBuilder.Entity("MyShop.DataLayer.Entities.Province", b =>
+                {
+                    b.Navigation("Cities");
                 });
 
             modelBuilder.Entity("MyShop.DataLayer.Entities.Role", b =>

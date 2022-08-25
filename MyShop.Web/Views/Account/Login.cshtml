@@ -70,8 +70,8 @@
                     <script>
                         // Your delay in milliseconds
                         var delay = 1000;
-                        setTimeout(function () { window.location = "https://localhost:44317/Admin"; }, delay);
-                        @*setTimeout(function () { window.location = "https://rakhshplus.omidone.com/Admin"; }, delay);*@
+                        @*setTimeout(function () { window.location = "https://localhost:44317/Admin"; }, delay);*@
+                        setTimeout(function () { window.location = "/Admin"; }, delay);
                     </script>
                 }
                 @if (ViewBag.EditProfile == true)
@@ -88,7 +88,7 @@
                 }
                 <section class="login_content">
                     <form asp-action="Login" method="post">
-                        <img src="/AdminContent/images/rakshplus.jpeg" class="img-responsive center-block"/>
+                        <img src="/AdminContent/images/rakhshiran-logo-m.png" class="img-responsive center-block"/>
                         <br/>
 
                         <div class="item form-group">

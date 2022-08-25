@@ -1,0 +1,684 @@
+﻿@page "{id}"
+@model MyShop.Web.Pages.Admin.Agent.EditAgentDocumentModel
+
+
+@{
+    Layout = "Shared/_AdminLayout";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">بارگذاری مدارک نمایندگی </h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+
+<style>
+    .img-thumbnail {
+        max-height: 108px !important;
+        min-height: 108px;
+    }
+
+    .view-first img {
+        transition: all .2s linear;
+        width: 100%;
+    }
+
+    .col-md-55 {
+        float: right !important;
+    }
+
+    .thumbnail {
+        height: 231px !important;
+        display: block;
+        padding: 0px;
+        margin-bottom: 23px;
+        line-height: 1.42857143;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        -webkit-transition: border .2s ease-in-out;
+        -o-transition: border .2s ease-in-out;
+        transition: border .2s ease-in-out;
+    }
+</style>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>
+                بارگزاری مدارک
+                @*       <small>کاربر گرامی لطفا تصویر پشت و روی کارت ملی و همچنین تصویر کلیه صفحات شناسنامه را بارگزاری نمایید</small>
+                *@
+            </h2>
+            <div class="clearfix">
+            </div>
+        </div>
+
+
+
+        <div class="x_content">
+
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model.Document == null)
+                        {
+                            <img id="imgBaseMojavezeKasbImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                            string extention = System.IO.Path.GetExtension(Model.Document.MojavezeKasbImage);
+                            if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                            {
+                                <img id="imgBaseMojavezeKasbImage" src="/AgentDocuments/@Model.Document.MojavezeKasbImage" class="img-thumbnail imgdefaultupload" />
+                            }
+                            else
+                            {
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.Document.MojavezeKasbImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                    <i class="fa fa-download"></i> دانلود
+                                </a>
+                            }
+
+                            <div class="mask">
+                                <a href="/AgentDocuments/@Model.Document.MojavezeKasbImage" target="_blank">
+                                    <p>تصویر مجوز کسب</p>
+                                    <div class="tools tools-bottom">
+                                        <i class="fa fa-link"></i>
+                                        <i class="fa fa-pencil"></i>
+
+                                    </div>
+                                </a>
+                            </div>
+                        }
+
+                        @*<div class="mask">
+                            <a href="/AgentDocuments/@Model.Document.MojavezeKasbImage" target="_blank">
+                            <p>تصویر مجوز کسب</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
+
+                            </div>
+                            </a>
+                            </div>*@
+                    </div>
+                    <div class="caption">
+                        <p>تصویر مجوز کسب</p>
+                        <input id="MojavezeKasbImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('MojavezeKasbImage', 'SpanMojavezeKasbImageUpload','fileProgressMojavezeKasbImage');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanMojavezeKasbImageUpload"></span>
+                        <progress id="fileProgressMojavezeKasbImage" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model.Document == null)
+                        {
+                            <img id="imgBaseSherkatnameImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                            string extention = System.IO.Path.GetExtension(Model.Document.SherkatnameImage);
+                            if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                            {
+                                <img id="imgBaseSherkatnameImage" src="/AgentDocuments/@Model.Document.SherkatnameImage" class="img-thumbnail imgdefaultupload" />
+                            }
+                            else
+                            {
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.Document.SherkatnameImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                    <i class="fa fa-download"></i> دانلود
+                                </a>
+
+                            }
+
+                        }
+
+                        @*<div class="mask">
+                            <a href="/AgentDocuments/@Model.Document.SherkatnameImage" target="_blank">
+                                <p>تصویر شرکت نامه</p>
+                                <div class="tools tools-bottom">
+                                    <i class="fa fa-link"></i>
+                                    <i class="fa fa-pencil"></i>
+
+                                </div>
+                            </a>
+                        </div>*@
+                    </div>
+                    <div class="caption">
+                        <p>تصویر شرکت نامه</p>
+                        <input id="SherkatnameImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('SherkatnameImage', 'SpanSherkatnameImageUpload','fileProgressSherkatnameImage');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanSherkatnameImageUpload"></span>
+                        <progress id="fileProgressSherkatnameImage" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model.Document == null)
+                        {
+                            <img id="imgBaseNewsPaperImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                            string extention = System.IO.Path.GetExtension(Model.Document.NewsPaperImage);
+                            if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                            {
+                                <img id="imgBaseNewsPaperImage" src="/AgentDocuments/@Model.Document.NewsPaperImage" class="img-thumbnail imgdefaultupload" />
+                            }
+                            else
+                            {
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.Document.NewsPaperImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                    <i class="fa fa-download"></i> دانلود
+                                </a>
+
+                            }
+
+                        }
+
+                        @*<div class="mask">
+                            <a href="/AgentDocuments/@Model.Document.NewsPaperImage" target="_blank">
+                            <p>تصویر روزنامه رسمی</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
+
+                            </div>
+                            </a>
+                            </div>*@
+                    </div>
+                    <div class="caption">
+                        <p>تصویر روزنامه رسمی</p>
+                        <input id="NewsPaperImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('NewsPaperImage', 'SpanNewsPaperImageUpload','fileProgressNewsPaperImage');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanNewsPaperImageUpload"></span>
+                        <progress id="fileProgressNewsPaperImage" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model.Document == null)
+                        {
+                            <img id="imgBaseAgahiTaasisImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                            string extention = System.IO.Path.GetExtension(Model.Document.AgahiTaasisImage);
+                            if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                            {
+                                <img id="imgBaseAgahiTaasisImage" src="/AgentDocuments/@Model.Document.AgahiTaasisImage" class="img-thumbnail imgdefaultupload" />
+                            }
+                            else
+                            {
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.Document.AgahiTaasisImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                    <i class="fa fa-download"></i> دانلود
+                                </a>
+
+                            }
+
+                        }
+
+                        @* <div class="mask">
+                            <a href="/AgentDocuments/@Model.Document.AgahiTaasisImage" target="_blank">
+                            <p>تصویر آگهی تاسیس</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
+
+                            </div>
+                            </a>
+                            </div>*@
+                    </div>
+                    <div class="caption">
+                        <p>تصویر آگهی تاسیس</p>
+                        <input id="AgahiTaasisImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('AgahiTaasisImage', 'SpanAgahiTaasisImageUpload','fileProgressAgahiTaasisImage');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanAgahiTaasisImageUpload"></span>
+                        <progress id="fileProgressAgahiTaasisImage" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model.Document == null)
+                        {
+                            <img id="imgBaseAkharinAgahiTaaghiratImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                            string extention = System.IO.Path.GetExtension(Model.Document.AkharinAgahiTaaghiratImage);
+                            if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                            {
+                                <img id="imgBaseAkharinAgahiTaaghiratImage" src="/AgentDocuments/@Model.Document.AkharinAgahiTaaghiratImage" class="img-thumbnail imgdefaultupload" />
+                            }
+                            else
+                            {
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.Document.AkharinAgahiTaaghiratImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                    <i class="fa fa-download"></i> دانلود
+                                </a>
+
+                            }
+
+                        }
+
+                        @* <div class="mask">
+                            <a href="/AgentDocuments/@Model.Document.AkharinAgahiTaaghiratImage" target="_blank">
+                            <p>تصویر آخرین آگهی تغییرات</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
+
+                            </div>
+                            </a>
+                            </div>*@
+                    </div>
+                    <div class="caption">
+                        <p>تصویر آخرین آگهی تغییرات</p>
+                        <input id="AkharinAgahiTaaghiratImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('AkharinAgahiTaaghiratImage', 'SpanAkharinAgahiTaaghiratImageUpload','fileProgressAkharinAgahiTaaghiratImage');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanAkharinAgahiTaaghiratImageUpload"></span>
+                        <progress id="fileProgressAkharinAgahiTaaghiratImage" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model.Document == null)
+                        {
+                            <img id="imgBaseSarDarForoushgahImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                            string extention = System.IO.Path.GetExtension(Model.Document.SarDarForoushgahImage);
+                            if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                            {
+                                <img id="imgBaseAkharinAgahiTaaghiratImage" src="/AgentDocuments/@Model.Document.SarDarForoushgahImage" class="img-thumbnail imgdefaultupload" />
+                            }
+                            else
+                            {
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.Document.SarDarForoushgahImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                    <i class="fa fa-download"></i> دانلود
+                                </a>
+
+                            }
+
+                        }
+
+                        @* <div class="mask">
+                            <a href="/AgentDocuments/@Model.Document.SarDarForoushgahImage" target="_blank">
+                            <p>تصویر سر در فروشگاه</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
+
+                            </div>
+                            </a>
+                            </div>*@
+                    </div>
+                    <div class="caption">
+                        <p>تصویر سر در فروشگاه</p>
+                        <input id="SarDarForoushgahImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('SarDarForoushgahImage', 'SpanSarDarForoushgahImageUpload','fileProgressSarDarForoushgahImage');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanSarDarForoushgahImageUpload"></span>
+                        <progress id="fileProgressSarDarForoushgahImage" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model.Document == null)
+                        {
+                            <img id="imgBaseFishAbImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                            string extention = System.IO.Path.GetExtension(Model.Document.FishAbImage);
+                            if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                            {
+                                <img id="imgBaseMojavezeKasbImage" src="/AgentDocuments/@Model.Document.FishAbImage" class="img-thumbnail imgdefaultupload" />
+                            }
+                            else
+                            {
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.Document.FishAbImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                    <i class="fa fa-download"></i> دانلود
+                                </a>
+
+                            }
+
+                        }
+
+                        @*<div class="mask">
+                            <a href="/AgentDocuments/@Model.Document.FishAbImage" target="_blank">
+                            <p>تصویر فیش آب</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
+
+                            </div>
+                            </a>
+                            </div>*@
+                    </div>
+                    <div class="caption">
+                        <p>تصویر فیش آب</p>
+                        <input id="FishAbImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('FishAbImage', 'SpanFishAbImageUpload','fileProgressFishAbImage');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanFishAbImageUpload"></span>
+                        <progress id="fileProgressFishAbImage" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model.Document == null)
+                        {
+                            <img id="imgBaseFishBarghImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                            string extention = System.IO.Path.GetExtension(Model.Document.FishBarghImage);
+                            if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                            {
+                                <img id="imgBaseMojavezeKasbImage" src="/AgentDocuments/@Model.Document.FishBarghImage" class="img-thumbnail imgdefaultupload" />
+                            }
+                            else
+                            {
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.Document.FishBarghImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                    <i class="fa fa-download"></i> دانلود
+                                </a>
+
+                            }
+
+                        }
+
+                        @*<div class="mask">
+                            <a href="/AgentDocuments/@Model.Document.FishBarghImage" target="_blank">
+                            <p>تصویر فیش برق</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
+
+                            </div>
+                            </a>
+                            </div>*@
+                    </div>
+                    <div class="caption">
+                        <p>تصویر فیش برق</p>
+                        <input id="FishBarghImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('FishBarghImage', 'SpanFishBarghImageUpload','fileProgressFishBarghImage');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanFishBarghImageUpload"></span>
+                        <progress id="fileProgressFishBarghImage" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model.Document == null)
+                        {
+                            <img id="imgBaseFishGazImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                            string extention = System.IO.Path.GetExtension(Model.Document.FishGazImage);
+                            if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                            {
+                                <img id="imgBaseFishGazImage" src="/AgentDocuments/@Model.Document.FishGazImage" class="img-thumbnail imgdefaultupload" />
+                            }
+                            else
+                            {
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.Document.FishGazImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                    <i class="fa fa-download"></i> دانلود
+                                </a>
+
+                            }
+
+                        }
+
+                        @* <div class="mask">
+                            <a href="/AgentDocuments/@Model.Document.FishGazImage" target="_blank">
+                            <p>تصویر فیش گاز</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
+
+                            </div>
+                            </a>
+                            </div>*@
+                    </div>
+                    <div class="caption">
+                        <p>تصویر فیش گاز </p>
+                        <input id="FishGazImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('FishGazImage', 'SpanFishGazImageUpload','fileProgressFishGazImage');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanFishGazImageUpload"></span>
+                        <progress id="fileProgressFishGazImage" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model.Document == null)
+                        {
+                            <img id="imgBaseFishTelePhoneImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                            string extention = System.IO.Path.GetExtension(Model.Document.FishTelePhoneImage);
+                            if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                            {
+                                <img id="imgBaseMojavezeKasbImage" src="/AgentDocuments/@Model.Document.FishTelePhoneImage" class="img-thumbnail imgdefaultupload" />
+                            }
+                            else
+                            {
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.Document.FishTelePhoneImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                    <i class="fa fa-download"></i> دانلود
+                                </a>
+
+                            }
+
+                        }
+
+                        @* <div class="mask">
+                            <a href="/AgentDocuments/@Model.Document.FishTelePhoneImage" target="_blank">
+                            <p>تصویر فیش تلفن ثابت</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
+
+                            </div>
+                            </a>
+                            </div>*@
+                    </div>
+                    <div class="caption">
+                        <p>تصویر فیش تلفن ثابت</p>
+                        <input id="FishTelePhoneImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('FishTelePhoneImage', 'SpanFishTelePhoneImageUpload','fileProgressFishTelePhoneImage');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanFishTelePhoneImageUpload"></span>
+                        <progress id="fileProgressFishTelePhoneImage" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-55">
+                <div class="thumbnail">
+                    <div class="image view view-first">
+                        @if (Model.Document == null)
+                        {
+                            <img id="imgBaseSanadNoeeMalekiatImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
+                        }
+                        else
+                        {
+                            string extention = System.IO.Path.GetExtension(Model.Document.SanadNoeeMalekiatImage);
+                            if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
+                            {
+                                <img id="imgBaseSanadNoeeMalekiatImage" src="/AgentDocuments/@Model.Document.SanadNoeeMalekiatImage" class="img-thumbnail imgdefaultupload" />
+                            }
+                            else
+                            {
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.Document.SanadNoeeMalekiatImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                    <i class="fa fa-download"></i> دانلود
+                                </a>
+
+                            }
+
+                        }
+
+                        @*  <div class="mask">
+                            <a href="/AgentDocuments/@Model.Document.SanadNoeeMalekiatImage" target="_blank">
+                            <p>تصویر سند نوع مالکیت </p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
+
+                            </div>
+                            </a>
+                            </div>*@
+                    </div>
+                    <div class="caption">
+                        <p>تصویر سند نوع مالکیت</p>
+                        <input id="SanadNoeeMalekiatImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
+                        <input type="button" value="آپلود تصویر " onclick="uploadFiles('SanadNoeeMalekiatImage', 'SpanSanadNoeeMalekiatImageUpload','fileProgressSanadNoeeMalekiatImage');" class="btn btn-success" />
+                        <span class="text text-success" id="SpanSanadNoeeMalekiatImageUpload"></span>
+                        <progress id="fileProgressSanadNoeeMalekiatImage" style="display: none"></progress>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<hr />
+<input type="button" value="بازگشت" onclick="location='/Admin/Agent/Index'" class="btn btn-success" />
+<script>
+
+
+          function uploadFiles(inputId, spanId,fileprocess) {
+              //debugger;
+                var input = document.getElementById(inputId);
+                var spanMessage = document.getElementById(spanId);
+                var fileprocessId = document.getElementById(fileprocess);
+
+                $(spanMessage).html('');
+                var files = input.files;
+                var formData = new FormData();
+
+                //console.log(files);
+
+                for (var i = 0; i != files.length; i++) {
+                    formData.append("files", files[i]);
+                }
+
+                $.ajax(
+                    {
+                        url: "/Home/Upload?term=" + inputId + "&agentId=" +@ViewData["AgentId"].ToString()+"",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        type: "POST",
+                        success: function (data) {
+
+                             $(fileprocessId).hide();
+                            if (data == "success") {
+                                $(spanMessage).html('فایل با موفقیت بارگزاری شد');
+                            }
+                            if (data == "maxfile") {
+                                $(spanMessage).html('حداکثر حجم فایل بایستی 30 مگ باشد');
+                            }
+                            if (data == "failed") {
+                                $(spanMessage).html('لطفا فایل مورد نظر را انتخاب کنید');
+                            }
+                        },
+                                                                    xhr: function() {
+                                                                        var fileXhr = $.ajaxSettings.xhr();
+                                                                        if (fileXhr.upload) {
+                                                                            $(fileprocessId).show();
+                                                                            fileXhr.upload.addEventListener("progress", function(e) {
+                                                                                if (e.lengthComputable) {
+                                                                                    $(fileprocessId).attr({
+                                                                                        value: e.loaded,
+                                                                                        max: e.total
+                                                                                    });
+                                                                                }
+                                                                            }, false);
+                                                                        }
+                                                                        return fileXhr;
+                                                                    },
+                                                                    error: function(err) {
+                                                                        alert(err.statusText);
+                                                                    }
+                    }
+                );
+            }
+
+            function readURL(input) {
+
+                debugger;
+                var name = $(input).attr("id");
+                ImageBase = "#imgBase" + name;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+
+                        $(ImageBase).attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+
+            }
+
+    function getFileExtension(filename)
+    {
+      var ext = /^.+\.([^.]+)$/.exec(filename);
+      return ext == null ? "" : ext[1];
+    }
+
+        $("#MojavezeKasbImage").change(function () {
+                readURL(this);
+            });
+
+        $("#SherkatnameImage").change(function () {
+                readURL(this);
+            });
+        $("#NewsPaperImage").change(function () {
+                readURL(this);
+            });
+        $("#AgahiTaasisImage").change(function () {
+                readURL(this);
+            });
+        $("#AkharinAgahiTaaghiratImage").change(function () {
+                readURL(this);
+            });
+        $("#SarDarForoushgahImage").change(function () {
+                readURL(this);
+            });
+              $("#FishAbImage").change(function () {
+                readURL(this);
+            });
+               $("#FishGazImage").change(function () {
+                readURL(this);
+            });
+               $("#FishBarghImage").change(function () {
+                readURL(this);
+            });
+              $("#FishTelePhoneImage").change(function () {
+                readURL(this);
+            });
+             $("#SanadNoeeMalekiatImage").change(function () {
+            readURL(this);
+        });
+
+</script>

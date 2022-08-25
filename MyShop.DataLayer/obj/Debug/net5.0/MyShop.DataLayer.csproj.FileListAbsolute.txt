@@ -4,7 +4,6 @@ C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\bin\Debug\net5.0\MyShop.
 C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\bin\Debug\net5.0\MyShop.DataLayer.dll
 C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\bin\Debug\net5.0\ref\MyShop.DataLayer.dll
 C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\bin\Debug\net5.0\MyShop.DataLayer.pdb
-C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\MyShop.DataLayer.csproj.AssemblyReference.cache
 C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\MyShop.DataLayer.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\MyShop.DataLayer.AssemblyInfoInputs.cache
 C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\MyShop.DataLayer.AssemblyInfo.cs
@@ -13,3 +12,4 @@ C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\MyShop.
 C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\ref\MyShop.DataLayer.dll
 C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\MyShop.DataLayer.pdb
 C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\MyShop.DataLayer.genruntimeconfig.cache
+C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\MyShop.DataLayer.csproj.AssemblyReference.cache

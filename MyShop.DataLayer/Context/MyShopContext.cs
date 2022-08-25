@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,12 @@ namespace MyShop.DataLayer.Context
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Agent> Agents { get; set; }
         public DbSet<AgentDocument> AgentDocuments { get; set; }
+        public DbSet<Province> Province { get; set; }
+        public DbSet<City> City { get; set; }
+        public DbSet<Contract> Contracts { get; set; }
+        public DbSet<Operative> Operatives { get; set; }
+        public DbSet<OperativeDocument> OperativeDocuments { get; set; }
+       
 
         #endregion
 
@@ -42,6 +49,7 @@ namespace MyShop.DataLayer.Context
                 .HasOne(u => u.Agent)
                 .WithMany(u => u.Users)
                 .HasForeignKey(u => u.AgentId);
+
 
             base.OnModelCreating(modelBuilder);
         }

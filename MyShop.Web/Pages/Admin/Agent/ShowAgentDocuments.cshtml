@@ -1,0 +1,239 @@
+﻿@page "{id}"
+@model MyShop.Web.Pages.Admin.Agent.ShowAgentDocumentsModel
+@{
+    Layout = "Shared/_AdminLayout";
+}
+
+<div class="row">
+<div class="col-md-12">
+<div class="x_panel">
+<div class="x_title">
+    <h2>
+        مدارک نمایندگی
+    </h2>
+    <ul class="nav navbar-right panel_toolbox">
+        <li>
+            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+        </li>
+        @*<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">تنظیمات 1</a>
+                        </li>
+                        <li><a href="#">تنظیمات 2</a>
+                        </li>
+                        </ul>
+                        </li>*@
+        <li>
+            <a class="close-link"><i class="fa fa-close"></i></a>
+        </li>
+    </ul>
+    <div class="clearfix"></div>
+</div>
+<div class="x_content">
+
+<div class="row">
+    <div class="col-md-55">
+        <div class="thumbnail">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src="/AgentDocuments/@Model.Document.MojavezeKasbImage" alt="image">
+                <div class="mask">
+                    <p>مجوز کسب</p>
+                    <div class="tools tools-bottom">
+                        <a href="/AgentDocuments/@Model.Document.MojavezeKasbImage" target="_blank"><i class="fa fa-download"></i></a>
+                        @*<a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <p>مجوز کسب</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-55">
+        <div class="thumbnail">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src="/AgentDocuments/@Model.Document.SherkatnameImage" alt="image">
+                <div class="mask">
+                    <p>شرکت نامه</p>
+                    <div class="tools tools-bottom">
+                        <a href="/AgentDocuments/@Model.Document.SherkatnameImage" target="_blank"><i class="fa fa-download"></i></a>
+                        @*<a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <p>شرکت نامه</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-55">
+        <div class="thumbnail">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src="/AgentDocuments/@Model.Document.NewsPaperImage" alt="image">
+                <div class="mask">
+                    <p>روزنامه رسمی</p>
+                    <div class="tools tools-bottom">
+                        <a href="/AgentDocuments/@Model.Document.NewsPaperImage" target="_blank"><i class="fa fa-download"></i></a>
+                        @* <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <p>روزنامه رسمی</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-55">
+        <div class="thumbnail">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src="/AgentDocuments/@Model.Document.AgahiTaasisImage" alt="image">
+                <div class="mask">
+                    <p>آگهی تاسیس</p>
+                    <div class="tools tools-bottom">
+                        <a href="/AgentDocuments/@Model.Document.AgahiTaasisImage" target="_blank"><i class="fa fa-download"></i></a>
+                        @*<a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <p>آگهی تاسیس</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-55">
+        <div class="thumbnail">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src="/AgentDocuments/@Model.Document.AkharinAgahiTaaghiratImage" alt="image">
+                <div class="mask">
+                    <p>آخرین تغییرات</p>
+                    <div class="tools tools-bottom">
+                        <a href="/AgentDocuments/@Model.Document.AkharinAgahiTaaghiratImage" target="_blank"><i class="fa fa-download"></i></a>
+                        @* <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <p>آخرین تغییرات</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-55">
+        <div class="thumbnail">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src="/AgentDocuments/@Model.Document.SarDarForoushgahImage" alt="image">
+                <div class="mask">
+                    <p>سردر فروشگاه</p>
+                    <div class="tools tools-bottom">
+                        <a href="/AgentDocuments/@Model.Document.SarDarForoushgahImage" target="_blank"><i class="fa fa-download"></i></a>
+                        @* <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <p>سردر فروشگاه</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-55">
+        <div class="thumbnail">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src="/AgentDocuments/@Model.Document.FishAbImage" alt="image">
+                <div class="mask">
+                    <p>فیش آب</p>
+                    <div class="tools tools-bottom">
+                        <a href="/AgentDocuments/@Model.Document.FishAbImage" target="_blank"><i class="fa fa-download"></i></a>
+                        @* <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <p>فیش آب</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-55">
+        <div class="thumbnail">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src="/AgentDocuments/@Model.Document.FishGazImage" alt="image">
+                <div class="mask">
+                    <p>فیش گاز</p>
+                    <div class="tools tools-bottom">
+                        <a href="/AgentDocuments/@Model.Document.FishGazImage" target="_blank"><i class="fa fa-download"></i></a>
+                        @* <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <p>فیش گاز</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-55">
+        <div class="thumbnail">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src="/AgentDocuments/@Model.Document.FishBarghImage" alt="image">
+                <div class="mask">
+                    <p>فیش برق</p>
+                    <div class="tools tools-bottom">
+                        <a href="/AgentDocuments/@Model.Document.FishBarghImage" target="_blank"><i class="fa fa-download"></i></a>
+                        @* <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <p>فیش برق</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-55">
+        <div class="thumbnail">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src="/AgentDocuments/@Model.Document.FishTelePhoneImage" alt="image">
+                <div class="mask">
+                    <p>فیش تلفن ثابت</p>
+                    <div class="tools tools-bottom">
+                        <a href="/AgentDocuments/@Model.Document.FishTelePhoneImage" target="_blank"><i class="fa fa-download"></i></a>
+                        @* <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <p>فیش تلفن ثابت</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-55">
+        <div class="thumbnail">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src="/AgentDocuments/@Model.Document.SanadNoeeMalekiatImage" alt="image">
+                <div class="mask">
+                    <p>سند نوع مالکیت</p>
+                    <div class="tools tools-bottom">
+                        <a href="/AgentDocuments/@Model.Document.SanadNoeeMalekiatImage" target="_blank"><i class="fa fa-download"></i></a>
+                        @*<a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <p>سند نوع مالکیت</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<input type="button" value="بازگشت" onclick="location='/Admin/Agent/Index'" class="btn btn-success" />

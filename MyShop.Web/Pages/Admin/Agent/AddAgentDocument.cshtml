@@ -63,37 +63,46 @@
             <div class="col-md-55">
                 <div class="thumbnail">
                     <div class="image view view-first">
-                        @if (Model == null)
+                        @if (Model.Document == null)
                         {
                             <img id="imgBaseMojavezeKasbImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
                         }
                         else
                         {
-                            string extention = System.IO.Path.GetExtension(Model.ListofDocument.MojavezeKasbImage);
+                            string extention = System.IO.Path.GetExtension(Model.Document.MojavezeKasbImage);
                             if (extention == "gif" || extention == "jpg" || extention == "png" || extention == "jpeg" || extention == "bpm")
                             {
                                 <img id="imgBaseMojavezeKasbImage" src="/AgentDocuments/@Model.ListofDocument.MojavezeKasbImage" class="img-thumbnail imgdefaultupload" />
                             }
                             else
                             {
-                                <a class="btn btn-app" href="/AgentDocuments/@Model.ListofDocument.MojavezeKasbImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
+                                <a class="btn btn-app" href="/AgentDocuments/@Model.Document.MojavezeKasbImage" target="_blank" style="background-color: #0000ff63; color: #fff;">
                                     <i class="fa fa-download"></i> دانلود
                                 </a>
-
                             }
 
+                            <div class="mask">
+                                <a href="/AgentDocuments/@Model.Document.MojavezeKasbImage" target="_blank">
+                                    <p>تصویر مجوز کسب</p>
+                                    <div class="tools tools-bottom">
+                                        <i class="fa fa-link"></i>
+                                        <i class="fa fa-pencil"></i>
+
+                                    </div>
+                                </a>
+                            </div>
                         }
 
-                        <div class="mask">
-                            <a href="/AgentDocuments/@Model.ListofDocument.MojavezeKasbImage" target="_blank">
-                                <p>تصویر مجوز کسب</p>
-                                <div class="tools tools-bottom">
-                                    <i class="fa fa-link"></i>
-                                    <i class="fa fa-pencil"></i>
+                        @*<div class="mask">
+                            <a href="/AgentDocuments/@Model.Document.MojavezeKasbImage" target="_blank">
+                            <p>تصویر مجوز کسب</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
 
-                                </div>
+                            </div>
                             </a>
-                        </div>
+                            </div>*@
                     </div>
                     <div class="caption">
                         <p>تصویر مجوز کسب</p>
@@ -107,9 +116,9 @@
             <div class="col-md-55">
                 <div class="thumbnail">
                     <div class="image view view-first">
-                        @if (Model == null)
+                        @if (Model.Document == null)
                         {
-                            <img id="imgBaseMojavezeKasbImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
+                            <img id="imgBaseSherkatnameImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
                         }
                         else
                         {
@@ -128,16 +137,16 @@
 
                         }
 
-                        <div class="mask">
+                        @*<div class="mask">
                             <a href="/AgentDocuments/@Model.Document.SherkatnameImage" target="_blank">
-                                <p>تصویر شرکت نامه</p>
-                                <div class="tools tools-bottom">
-                                    <i class="fa fa-link"></i>
-                                    <i class="fa fa-pencil"></i>
+                            <p>تصویر شرکت نامه</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
 
-                                </div>
+                            </div>
                             </a>
-                        </div>
+                            </div>*@
                     </div>
                     <div class="caption">
                         <p>تصویر شرکت نامه</p>
@@ -151,7 +160,7 @@
             <div class="col-md-55">
                 <div class="thumbnail">
                     <div class="image view view-first">
-                        @if (Model == null)
+                        @if (Model.Document == null)
                         {
                             <img id="imgBaseNewsPaperImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
                         }
@@ -172,16 +181,16 @@
 
                         }
 
-                        <div class="mask">
+                        @*<div class="mask">
                             <a href="/AgentDocuments/@Model.Document.NewsPaperImage" target="_blank">
-                                <p>تصویر روزنامه رسمی</p>
-                                <div class="tools tools-bottom">
-                                    <i class="fa fa-link"></i>
-                                    <i class="fa fa-pencil"></i>
+                            <p>تصویر روزنامه رسمی</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
 
-                                </div>
+                            </div>
                             </a>
-                        </div>
+                            </div>*@
                     </div>
                     <div class="caption">
                         <p>تصویر روزنامه رسمی</p>
@@ -196,7 +205,7 @@
             <div class="col-md-55">
                 <div class="thumbnail">
                     <div class="image view view-first">
-                        @if (Model == null)
+                        @if (Model.Document == null)
                         {
                             <img id="imgBaseAgahiTaasisImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
                         }
@@ -217,19 +226,19 @@
 
                         }
 
-                        <div class="mask">
+                        @* <div class="mask">
                             <a href="/AgentDocuments/@Model.Document.AgahiTaasisImage" target="_blank">
-                                <p>تصویر آگهی تاسیس</p>
-                                <div class="tools tools-bottom">
-                                    <i class="fa fa-link"></i>
-                                    <i class="fa fa-pencil"></i>
+                            <p>تصویر آگهی تاسیس</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
 
-                                </div>
+                            </div>
                             </a>
-                        </div>
+                            </div>*@
                     </div>
                     <div class="caption">
-                        <p>تصویر روزنامه رسمی</p>
+                        <p>تصویر آگهی تاسیس</p>
                         <input id="AgahiTaasisImage" name="files" type="file" size="1" accept="image/png, image/gif, image/jpeg,image/jpg,image/bmp" />
                         <input type="button" value="آپلود تصویر " onclick="uploadFiles('AgahiTaasisImage', 'SpanAgahiTaasisImageUpload','fileProgressAgahiTaasisImage');" class="btn btn-success" />
                         <span class="text text-success" id="SpanAgahiTaasisImageUpload"></span>
@@ -240,7 +249,7 @@
             <div class="col-md-55">
                 <div class="thumbnail">
                     <div class="image view view-first">
-                        @if (Model == null)
+                        @if (Model.Document == null)
                         {
                             <img id="imgBaseAkharinAgahiTaaghiratImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
                         }
@@ -261,16 +270,16 @@
 
                         }
 
-                        <div class="mask">
+                        @* <div class="mask">
                             <a href="/AgentDocuments/@Model.Document.AkharinAgahiTaaghiratImage" target="_blank">
-                                <p>تصویر آخرین آگهی تغییرات</p>
-                                <div class="tools tools-bottom">
-                                    <i class="fa fa-link"></i>
-                                    <i class="fa fa-pencil"></i>
+                            <p>تصویر آخرین آگهی تغییرات</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
 
-                                </div>
+                            </div>
                             </a>
-                        </div>
+                            </div>*@
                     </div>
                     <div class="caption">
                         <p>تصویر آخرین آگهی تغییرات</p>
@@ -281,11 +290,10 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-55">
                 <div class="thumbnail">
                     <div class="image view view-first">
-                        @if (Model == null)
+                        @if (Model.Document == null)
                         {
                             <img id="imgBaseSarDarForoushgahImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
                         }
@@ -306,16 +314,16 @@
 
                         }
 
-                        <div class="mask">
+                        @* <div class="mask">
                             <a href="/AgentDocuments/@Model.Document.SarDarForoushgahImage" target="_blank">
-                                <p>تصویر سر در فروشگاه</p>
-                                <div class="tools tools-bottom">
-                                    <i class="fa fa-link"></i>
-                                    <i class="fa fa-pencil"></i>
+                            <p>تصویر سر در فروشگاه</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
 
-                                </div>
+                            </div>
                             </a>
-                        </div>
+                            </div>*@
                     </div>
                     <div class="caption">
                         <p>تصویر سر در فروشگاه</p>
@@ -329,7 +337,7 @@
             <div class="col-md-55">
                 <div class="thumbnail">
                     <div class="image view view-first">
-                        @if (Model == null)
+                        @if (Model.Document == null)
                         {
                             <img id="imgBaseFishAbImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
                         }
@@ -350,16 +358,16 @@
 
                         }
 
-                        <div class="mask">
+                        @*<div class="mask">
                             <a href="/AgentDocuments/@Model.Document.FishAbImage" target="_blank">
-                                <p>تصویر فیش آب</p>
-                                <div class="tools tools-bottom">
-                                    <i class="fa fa-link"></i>
-                                    <i class="fa fa-pencil"></i>
+                            <p>تصویر فیش آب</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
 
-                                </div>
+                            </div>
                             </a>
-                        </div>
+                            </div>*@
                     </div>
                     <div class="caption">
                         <p>تصویر فیش آب</p>
@@ -373,7 +381,7 @@
             <div class="col-md-55">
                 <div class="thumbnail">
                     <div class="image view view-first">
-                        @if (Model == null)
+                        @if (Model.Document == null)
                         {
                             <img id="imgBaseFishBarghImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
                         }
@@ -394,16 +402,16 @@
 
                         }
 
-                        <div class="mask">
+                        @*<div class="mask">
                             <a href="/AgentDocuments/@Model.Document.FishBarghImage" target="_blank">
-                                <p>تصویر فیش برق</p>
-                                <div class="tools tools-bottom">
-                                    <i class="fa fa-link"></i>
-                                    <i class="fa fa-pencil"></i>
+                            <p>تصویر فیش برق</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
 
-                                </div>
+                            </div>
                             </a>
-                        </div>
+                            </div>*@
                     </div>
                     <div class="caption">
                         <p>تصویر فیش برق</p>
@@ -417,7 +425,7 @@
             <div class="col-md-55">
                 <div class="thumbnail">
                     <div class="image view view-first">
-                        @if (Model == null)
+                        @if (Model.Document == null)
                         {
                             <img id="imgBaseFishGazImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
                         }
@@ -438,16 +446,16 @@
 
                         }
 
-                        <div class="mask">
+                        @* <div class="mask">
                             <a href="/AgentDocuments/@Model.Document.FishGazImage" target="_blank">
-                                <p>تصویر فیش گاز</p>
-                                <div class="tools tools-bottom">
-                                    <i class="fa fa-link"></i>
-                                    <i class="fa fa-pencil"></i>
+                            <p>تصویر فیش گاز</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
 
-                                </div>
+                            </div>
                             </a>
-                        </div>
+                            </div>*@
                     </div>
                     <div class="caption">
                         <p>تصویر فیش گاز </p>
@@ -461,7 +469,7 @@
             <div class="col-md-55">
                 <div class="thumbnail">
                     <div class="image view view-first">
-                        @if (Model == null)
+                        @if (Model.Document == null)
                         {
                             <img id="imgBaseFishTelePhoneImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
                         }
@@ -482,16 +490,16 @@
 
                         }
 
-                        <div class="mask">
+                        @* <div class="mask">
                             <a href="/AgentDocuments/@Model.Document.FishTelePhoneImage" target="_blank">
-                                <p>تصویر فیش تلفن ثابت</p>
-                                <div class="tools tools-bottom">
-                                    <i class="fa fa-link"></i>
-                                    <i class="fa fa-pencil"></i>
+                            <p>تصویر فیش تلفن ثابت</p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
 
-                                </div>
+                            </div>
                             </a>
-                        </div>
+                            </div>*@
                     </div>
                     <div class="caption">
                         <p>تصویر فیش تلفن ثابت</p>
@@ -505,7 +513,7 @@
             <div class="col-md-55">
                 <div class="thumbnail">
                     <div class="image view view-first">
-                        @if (Model == null)
+                        @if (Model.Document == null)
                         {
                             <img id="imgBaseSanadNoeeMalekiatImage" src="/AgentDocuments/media.jpg" class="img-thumbnail imgdefaultupload" />
                         }
@@ -526,16 +534,16 @@
 
                         }
 
-                        <div class="mask">
+                        @*  <div class="mask">
                             <a href="/AgentDocuments/@Model.Document.SanadNoeeMalekiatImage" target="_blank">
-                                <p>تصویر سند نوع مالکیت </p>
-                                <div class="tools tools-bottom">
-                                    <i class="fa fa-link"></i>
-                                    <i class="fa fa-pencil"></i>
+                            <p>تصویر سند نوع مالکیت </p>
+                            <div class="tools tools-bottom">
+                            <i class="fa fa-link"></i>
+                            <i class="fa fa-pencil"></i>
 
-                                </div>
+                            </div>
                             </a>
-                        </div>
+                            </div>*@
                     </div>
                     <div class="caption">
                         <p>تصویر سند نوع مالکیت</p>
@@ -546,6 +554,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>
