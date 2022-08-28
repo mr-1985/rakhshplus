@@ -46,5 +46,10 @@ namespace MyShop.Core.Services
                 Avatar = u.UserAvatar
             }).Single();
         }
+
+        public int GetUserIdByUserName(string userName)
+        {
+            return _context.Users.Single(u => u.UserName == userName).UserId;
+        }
     }
 }

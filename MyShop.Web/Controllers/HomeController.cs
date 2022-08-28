@@ -29,7 +29,6 @@ namespace MyShop.Web.Controllers
 
 
         [HttpPost]
-        //[Route("UserPanel/PayaReceipt/UploadDocs")]
         [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
         public async Task<IActionResult> Upload(IEnumerable<IFormFile> files, string term, int agentId)
         {
@@ -130,11 +129,71 @@ namespace MyShop.Web.Controllers
             return new JsonResult("success");
         }
 
+
+        
+
+             [HttpPost]
+        [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
+        public async Task<IActionResult> UploadOperativeDocument(IEnumerable<IFormFile> files, string term, int operativeId)
+        {
+
+
+            long size = files.Sum(f => f.Length);
+            if (size == 0)
+            {
+                return new JsonResult("failed");
+            }
+            if (size > 31457280)
+            {
+                return new JsonResult("maxfile");
+            }
+            foreach (var item in files)
+            {
+                var UploadsRootFolder = Path.Combine(_env.WebRootPath, "OperativeDocuments");
+                if (!Directory.Exists(UploadsRootFolder))
+                    Directory.CreateDirectory(UploadsRootFolder);
+
+                if (item != null)
+                {
+
+                    string FileExtension = Path.GetExtension(item.FileName);
+
+                    var fileGuid = Guid.NewGuid().ToString();
+                    string NewFileName = String.Concat(fileGuid, FileExtension);
+
+                    if (term == "SarDarbForoushgahImage")
+                    {
+                        NewFileName = operativeId + "-" + NewFileName;
+                        _agentService.AddOperativeDocumentOfAgent(operativeId, NewFileName, term);
+                    }
+
+                    var path = Path.Combine(UploadsRootFolder, NewFileName);
+                    using (var strem = new FileStream(path, FileMode.Create))
+                    {
+                        await item.CopyToAsync(strem);
+                    }
+
+                }
+            }
+            return new JsonResult("success");
+        }
+
         public IActionResult DeleteAgent(string[] agentId)
         {
             foreach (string id in agentId)
             {
                 _agentService.DeleteAgent(Convert.ToInt32(id));
+            }
+
+            return Json(" Diesel Generators Successfully Deleted.");
+        }
+
+        
+        public IActionResult DeleteOperative(string[] operativeId)
+        {
+            foreach (string id in operativeId)
+            {
+                _agentService.DeleteOperative(Convert.ToInt32(id));
             }
 
             return Json(" Diesel Generators Successfully Deleted.");
@@ -149,5 +208,17 @@ namespace MyShop.Web.Controllers
             list.AddRange(_agentService.GetCityByProvinceIDSelectList(id));
             return Json(new SelectList(list, "Value", "Text"));
         }
+
+        ////public IActionResult GetAgentByAgentsId(int id)
+        ////{
+        ////    List<SelectListItem> list = new List<SelectListItem>()
+        ////    {
+        ////        new SelectListItem(){Text = "انتخاب کنید" , Value = ""}
+        ////    };
+        ////    list.AddRange(_agentService.GetCityByProvinceIDSelectList(id));
+        ////    return Json(new SelectList(list, "Value", "Text"));
+        ////}
+
+        
     }
 }

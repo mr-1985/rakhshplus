@@ -20,12 +20,13 @@ namespace MyShop.DataLayer.Entities
 
 
         public int  UserId { get; set; }
-        public int AgentId { get; set; }
+        public int? AgentId { get; set; }
+        public int? OperativeId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
-
+        public DateTime CreateDate { get; set; }
         public List<Agent> Agents { get; set; }
         public List<Operative> Operatives { get; set; }
     }

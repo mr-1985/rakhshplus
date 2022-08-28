@@ -2,7 +2,7 @@
 @using MyShop.Core.Convertors
 @model MyShop.Web.Pages.Admin.Agent.IndexModel
 @{
-    ViewData["Title"] = "لیست نمایندگی ها ";
+    ViewData["Title"] = "لیست محل پذیرنده  ";
     Layout = "Shared/_AdminLayout";
 }
 
@@ -15,7 +15,7 @@
     <div class="x_panel">
         <div class="x_title">
             <h2>
-                لیست نمایندگی ها
+                لیست  محل پذیرنده
             </h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="x_content">
-            <a asp-page="CreateAgent" class="btn btn-outline btn-success">افزودن نمایندگی جدید</a>
+            <a asp-page="CreateAgent" class="btn btn-outline btn-success">افزودن پذیرنده جدید</a>
             <button type="button" id="delete" class="btn btn-danger">حذف</button>
 
             <div class="table-responsive">
@@ -43,7 +43,7 @@
                             <input type="checkbox" id="checkAll" />
                         </th>
                         <th></th>
-                        <th class="column-title">نام نمایندگی</th>
+                        <th class="column-title">نام </th>
                         <th class="column-title">استان</th>
                         <th class="column-title">شهر</th>
                         <th class="column-title"> کد پستی </th>

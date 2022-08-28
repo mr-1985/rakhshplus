@@ -1,0 +1,163 @@
+﻿@page
+@using MyShop.Core.Convertors
+@model MyShop.Web.Pages.Admin.Operative.IndexModel
+
+
+@{
+    ViewData["Title"] = "لیست نمایندگی ها ";
+    Layout = "Shared/_AdminLayout";
+}
+
+<style>
+    .checkBox {
+    }
+</style>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>
+                لیست نمایندگی ها
+            </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+            <a asp-page="CreateOperative" class="btn btn-outline btn-success">افزودن نمایندگی جدید</a>
+            <button type="button" id="delete" class="btn btn-danger">حذف</button>
+
+            <div class="table-responsive">
+                @{
+                    int rowCount = 1;
+                }
+                <table id="myTable" class="table table-striped jambo_table">
+                    <thead>
+                    <tr >
+                        <th>
+                            <input type="checkbox" id="checkAll" />
+                        </th>
+                        <th></th>
+                        <th class="column-title">نام نمایندگی</th>
+                        <th class="column-title">استان</th>
+                        <th class="column-title">شهر</th>
+                        <th class="column-title"> کد پستی </th>
+                        <th class="column-title">تلفن ثابت</th>
+                        <th class="column-title">ایمیل</th>
+                        <th class="column-title">آدرس</th>
+                        <th class="column-title">تاریخ ثبت نام</th>
+                        <th class="column-title no-link last">
+                            <span class="nobr">عملیات</span>
+                        </th>
+
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach (var operative in Model.Operatives)
+                    {
+                        <tr @*class="even pointer"*@>
+
+                            <td >
+                                <input type="checkbox" class="checkBox" value="@operative.OperativeId" />
+                            </td>
+                            <td>
+                                @rowCount
+                            </td>
+                            <td class=" ">
+                                @operative.Name
+                            </td>
+                            <td class=" ">
+                                @operative.Ostan
+                            </td>
+                            <td class=" ">
+                                @operative.City
+                            </td>
+                            <td class=" ">
+                                @operative.PostalCode
+                            </td>
+                            <td class=" ">
+                                @operative.TelePhone
+                            </td>
+                            <td class=" ">
+                                @operative.Email
+                            </td>
+                            <td class=" ">
+                                @operative.Address
+                            </td>
+                            <td >
+                                @operative.CreateDtae.ToShamsi()
+                            </td>
+                            <td class=" last">
+                                <a href="/Admin/Operative/EditOperative/@operative.OperativeId" class="btn btn-round btn-warning">ویرایش</a>
+                                <a href="/Admin/Operative/ShowOperativeDocuments/@operative.OperativeId" class="btn btn-round btn-info">مدارک</a>
+                            </td>
+                        </tr>
+                        rowCount++;
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+<script>
+
+    $(document).ready(function() {
+        $("#myTable").DataTable();
+    });
+</script>
+
+<script>
+    $("#checkAll").click(function() {
+        $(".checkBox").prop('checked',
+            $(this).prop('checked'));
+    });
+
+    $("#delete").click(function() {
+        var selectedIDs = new Array();
+
+        $('input:checkbox.checkBox').each(function() {
+            if ($(this).prop('checked')) {
+                selectedIDs.push($(this).val());
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/DeleteOperative",
+            data: { "operativeId": selectedIDs },
+
+            success: function(response) {
+                window.location.href = "/Admin/Operative";
+            },
+            failure: function(response) {
+                alert(response.responseText);
+            },
+            error: function(response) {
+                alert(response.responseText);
+            }
+
+        });
+
+    });
+
+</script>
+
+}
+
+
+
+
+
+

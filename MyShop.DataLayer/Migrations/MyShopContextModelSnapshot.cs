@@ -36,7 +36,7 @@ namespace MyShop.DataLayer.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("ContractId")
+                    b.Property<int?>("ContractId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDtae")
@@ -191,13 +191,16 @@ namespace MyShop.DataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AgentId")
+                    b.Property<int?>("AgentId")
                         .HasColumnType("int");
 
                     b.Property<string>("ContractNumber")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -207,6 +210,9 @@ namespace MyShop.DataLayer.Migrations
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
+
+                    b.Property<int?>("OperativeId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -254,7 +260,7 @@ namespace MyShop.DataLayer.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("ContractId")
+                    b.Property<int?>("ContractId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDtae")
@@ -632,9 +638,7 @@ namespace MyShop.DataLayer.Migrations
                 {
                     b.HasOne("MyShop.DataLayer.Entities.Contract", "Contract")
                         .WithMany("Agents")
-                        .HasForeignKey("ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ContractId");
 
                     b.Navigation("Contract");
                 });
@@ -663,9 +667,7 @@ namespace MyShop.DataLayer.Migrations
                 {
                     b.HasOne("MyShop.DataLayer.Entities.Contract", "Contract")
                         .WithMany("Operatives")
-                        .HasForeignKey("ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ContractId");
 
                     b.Navigation("Contract");
                 });

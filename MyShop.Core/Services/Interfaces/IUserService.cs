@@ -14,5 +14,6 @@ namespace MyShop.Core.Services.Interfaces
         bool IsExistEmail(string email);
         User LoginUser(LoginViewModel login);
         SideBarAdminPanelViewModel GetAdminPanelSideBarData(string username);
+        int GetUserIdByUserName(string userName);
     }
 }

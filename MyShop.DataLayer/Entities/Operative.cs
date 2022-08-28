@@ -11,7 +11,7 @@ namespace MyShop.DataLayer.Entities
     {
         [Key]
         public int OperativeId { get; set; }
-        public int ContractId { get; set; }
+        //public int ContractId { get; set; }
 
         [Display(Name = "نام ")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

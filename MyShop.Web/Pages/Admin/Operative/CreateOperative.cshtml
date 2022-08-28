@@ -1,0 +1,134 @@
+﻿@page
+@model MyShop.Web.Pages.Admin.Operative.CreateOperativeModel
+
+
+@{
+    ViewData["Title"] = "افزودن نمایندگی";
+    Layout = "Shared/_AdminLayout";
+}
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>
+            اطلاعات نمایندگی
+
+        </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <form method="post" enctype="multipart/form-data">
+            <div class="row">
+
+
+
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                    <div class="form-group has-feedback">
+                        <input asp-for="Operative.Name" type="text" class="form-control has-feedback-left" required=""  placeholder="نام">
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Operative.Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <select asp-items="@(ViewData["province"] as SelectList)" class="form-control" asp-for="Operative.Ostan" id="OstanId"></select>
+
+                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Operative.Ostan" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <select asp-items="@(ViewData["City"] as SelectList)" class="form-control" asp-for="Operative.City"></select>
+                        @*<span asp-validation-for="CreateAgentViewModel.CityId" class="text-danger"></span>
+                        <input asp-for="Agent.City" type="text" class="form-control has-feedback-left" required="" placeholder="شهر">*@
+                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Operative.City" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <input asp-for="Operative.Email" type="email" class="form-control has-feedback-left" required="" placeholder="ایمیل ">
+                        <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Operative.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <textarea asp-for="Operative.Address" type="text" class="form-control has-feedback-left" required="" placeholder="آدرس "></textarea>
+                        @*<textarea id="textarea" required="required" placeholder="آدرس " name="textarea" class="form-control col-md-7 col-xs-12"></textarea>*@
+                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Operative.Address" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                    <div class="form-group has-feedback">
+                        <input asp-for="Operative.PostalCode" type="text" class="form-control has-feedback-left" required="" placeholder="کدپستی">
+                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Operative.PostalCode" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <input asp-for="Operative.TelePhone" type="text" class="form-control has-feedback-left" required="" placeholder="تلفن ثابت">
+                        <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Operative.TelePhone" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <input asp-for="Operative.Fax" type="text" class="form-control has-feedback-left" placeholder="نمابر">
+                        <span class="fa fa-fax form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Operative.Fax" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <input asp-for="Operative.WebSite" type="text" class="form-control has-feedback-left" placeholder=" وب سایت">
+                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Operative.WebSite" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <input asp-for="Operative.NoeMalekiat" type="text" class="form-control has-feedback-left" placeholder="نوع مالکیت ">
+                        <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
+                        <span asp-validation-for="Operative.NoeMalekiat" class="text-danger"></span>
+                    </div>
+
+                    
+                </div>
+
+
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-9 col-sm-9 col-xs-12 ">
+                    <a asp-page="Index" class="btn btn-primary">انصراف</a>
+                    <button type="submit" class="btn btn-success">ارسال</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts{ 
+    
+    <script>
+        $("#OstanId").change(function () {
+          
+            $("#Operative_City").empty();
+            $.getJSON("/home/GetCityByOstanId/" + $("#OstanId :selected").val(),
+                function (data) {
+                    $.each(data,
+                        function () {
+                            $("#Operative_City")
+                                .append('<option value=' + this.value + '>' + this.text + '</option>');
+                        });
+                });
+        });
+    </script>
+
+}

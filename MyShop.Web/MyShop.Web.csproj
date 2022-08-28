@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\NewFolder\**" />
-    <Content Remove="wwwroot\NewFolder\**" />
-    <EmbeddedResource Remove="wwwroot\NewFolder\**" />
-    <None Remove="wwwroot\NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="wwwroot\Template\vendors\parsleyjs\bower_components\bootstrap\bower.json" />
     <Content Include="wwwroot\Template\vendors\parsleyjs\bower_components\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="wwwroot\Template\vendors\parsleyjs\bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />

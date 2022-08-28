@@ -36,14 +36,13 @@ namespace MyShop.Core.Services
 
         public List<Agent> GetAllGent()
         {
-            //return _context.Agents.Where(a => a.IsDelete == false).ToList();
             var result = from agent in _context.Agents
                          join city in _context.City
                              on agent.City equals city.CityId.ToString()
 
                          join province in _context.Province
                              on agent.Ostan equals province.ProvinceId.ToString()
-
+                         where agent.IsDelete == false
                          select (new Agent()
                          {
                              City = city.CityName,
@@ -341,6 +340,16 @@ namespace MyShop.Core.Services
             UpdateAgent(agent);
         }
 
+        public List<Contract> GetAllAgentContracts()
+        {
+            return _context.Contracts.Where(c=>c.OperativeId==null).ToList();
+        }
+
+        public List<Contract> GetAllOperativeContracts()
+        {
+            return _context.Contracts.Where(c => c.AgentId == null).ToList();
+        }
+
         public List<City> GetAllCity()
         {
             return _context.City.ToList();
@@ -375,6 +384,145 @@ namespace MyShop.Core.Services
                     Text = g.CityName,
                     Value = g.CityId.ToString()
                 }).ToList();
+        }
+
+        public List<Operative> GetAllOperatives()
+        {
+            var result = from operative in _context.Operatives
+                         join city in _context.City
+                             on operative.City equals city.CityId.ToString()
+
+                         join province in _context.Province
+                             on operative.Ostan equals province.ProvinceId.ToString()
+                         where operative.IsDelete == false
+                         select (new Operative()
+                         {
+                             City = city.CityName,
+                             Ostan = province.ProvinceName,
+                             Address = operative.Address,
+                             CreateDtae = operative.CreateDtae,
+                             Email = operative.Email,
+                             OperativeId = operative.OperativeId,
+                             PostalCode = operative.PostalCode,
+                             TelePhone = operative.TelePhone,
+                             Fax = operative.Fax,
+                             Name = operative.Name,
+                             NoeMalekiat = operative.NoeMalekiat,
+                             WebSite = operative.WebSite
+                         });
+            return result.ToList();
+        }
+
+        public int AddOperative(Operative operative)
+        {
+            operative.CreateDtae = DateTime.Now;
+
+            _context.Add(operative);
+            _context.SaveChanges();
+
+            return operative.OperativeId;
+        }
+
+        public OperativeDocument GetOperativeDocumentByOperativeId(int operativeId)
+        {
+            return _context.OperativeDocuments.SingleOrDefault(a => a.OperativeId == operativeId);
+        }
+
+        public int AddOperativeDocumentOfAgent(int operativeId, string fileName, string term)
+        {
+            var result = _context.OperativeDocuments.FirstOrDefault(p => p.OperativeId == operativeId);
+            if (result != null)
+            {
+                if (term == "SarDarbForoushgahImage")
+                {
+                    if (result.SarDarbForoushgahImage != "media.jpg")
+                    {
+                        string deleteimagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/OperativeDocuments", result.SarDarbForoushgahImage);
+                        if (File.Exists(deleteimagePath))
+                        {
+                            File.Delete(deleteimagePath);
+                        }
+                    }
+                    result.SarDarbForoushgahImage = fileName;
+                }
+
+
+
+                result.CreateDate = DateTime.Now;
+                ;
+                _context.OperativeDocuments.Update(result);
+                _context.SaveChanges();
+                return 1;
+            }
+            else
+            {
+                OperativeDocument document = new OperativeDocument();
+                document.OperativeId = operativeId;
+                document.CreateDate = DateTime.Now;
+
+                if (term == "SarDarbForoushgahImage")
+                {
+                    document.SarDarbForoushgahImage = fileName;
+                }
+
+                if (document.SarDarbForoushgahImage == null)
+                {
+                    document.SarDarbForoushgahImage = "media.jpg";
+                }
+
+
+                _context.OperativeDocuments.Add(document);
+                _context.SaveChanges();
+                return 1;
+            }
+        }
+
+        public void DeleteOperative(int operativeId)
+        {
+            var operative = _context.Operatives.Find(operativeId);
+            operative.IsDelete = true;
+            UpdateOperative(operative);
+        }
+
+        public void UpdateOperative(Operative operative)
+        {
+            operative.CreateDtae = DateTime.Now;
+            _context.Update(operative);
+            _context.SaveChanges();
+        }
+
+        public Operative GetOperativeById(int operativeId)
+        {
+            return _context.Operatives.Find(operativeId);
+        }
+
+        public List<SelectListItem> GetAllAgentSelectList()
+        {
+            return _context.Agents
+                .Select(g => new SelectListItem()
+                {
+                    Text = g.Name,
+                    Value = g.AgentId.ToString()
+                }).ToList();
+        }
+
+        public List<SelectListItem> GetAllOperativeSelectList()
+        {
+            return _context.Operatives
+                .Select(g => new SelectListItem()
+                {
+                    Text = g.Name,
+                    Value = g.OperativeId.ToString()
+                }).ToList();
+        }
+
+        public int AddContract(Contract contract)
+        {
+            contract.CreateDate=DateTime.Now;
+            _context.Add(contract);
+            _context.SaveChanges();
+            return contract.ContractId;
+
         }
     }
 }

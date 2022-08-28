@@ -19,6 +19,8 @@ namespace MyShop.Core.Services.Interfaces
         AgentDocument GetDocumentByAgentId(int agentId);
         void UpdateAgent(Agent agent);
         void DeleteAgent(int agentId);
+        List<Contract> GetAllAgentContracts();
+        List<Contract> GetAllOperativeContracts();
 
         #region Province
 
@@ -28,6 +30,27 @@ namespace MyShop.Core.Services.Interfaces
         List<City> GetCityByProvinceID(int ProvinceId);
         List<SelectListItem> GetCityByProvinceIDSelectList(int ProvinceId);
 
+        #endregion
+
+        #region Operative
+
+        List<Operative> GetAllOperatives();
+        int AddOperative(Operative operative);
+        OperativeDocument GetOperativeDocumentByOperativeId(int operativeId);
+        int AddOperativeDocumentOfAgent(int operativeId, string fileName, string term);
+        void DeleteOperative(int operativeId);
+        void UpdateOperative(Operative operative);
+        Operative GetOperativeById(int operativeId);
+
+        #endregion
+
+        #region Contract
+
+        List<SelectListItem> GetAllAgentSelectList();
+        List<SelectListItem> GetAllOperativeSelectList();
+
+        int AddContract(Contract contract);
+        
         #endregion
     }
 }

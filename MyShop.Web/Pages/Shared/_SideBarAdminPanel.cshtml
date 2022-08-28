@@ -12,7 +12,7 @@
 @{
 
     SideBarAdminPanelViewModel user =
-                                        _UserService.GetAdminPanelSideBarData(User.Identity.Name);
+                                                _UserService.GetAdminPanelSideBarData(User.Identity.Name);
 
 }
 
@@ -45,7 +45,7 @@
             <div class="menu_section">
 
                 <ul class="nav side-menu">
-                     @*@if (User.HasClaim(ClaimTypes.Role, "1") || User.HasClaim(ClaimTypes.Role, "4"))
+                    @*@if (User.HasClaim(ClaimTypes.Role, "1") || User.HasClaim(ClaimTypes.Role, "4"))
                         {
                         <li>
                         <a href="/UserPanel/MyCourses"><i class="fa fa-dashboard"></i> دوره های من</a>
@@ -79,21 +79,25 @@
                             <li><a href="/Admin/Product/CreateProduct/">افزودن کالا</a></li>
                         </ul>
                     </li>
-                    
-                     <li>
-                         <a><i class="fa fa-graduation-cap"></i> مدیریت نمایندگی ها <span class="fa fa-chevron-down"></span></a>
-                         <ul class="nav child_menu">
-                             <li><a href="/Admin/Agent">لیست نمایندگی ها</a></li>
-                             <li><a href="/Admin/Agent/CreateAgent">افزودن نمایندگی</a></li>
-                            
-                         </ul>
-                     </li>
 
-                     <li>
-                        <a><i class="fa fa-graduation-cap"></i> محل پذیرنده <span class="fa fa-chevron-down"></span></a>
+                    <li>
+                        <a><i class="fa fa-graduation-cap"></i>  مدیریت  پذیرنده ها<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="/Admin/Solicitorship">لیست محل های پذیرنده</a></li>
-                            <li><a href="/Admin/Solicitorship/CreateSolicitorship/">افزودن </a></li>
+                            <li><a href="/Admin/Agent">لیست پذیرنده </a></li>
+                            <li><a href="/Admin/Agent/CreateAgent">افزودن پذیرنده</a></li>
+                            <li><a href="/Admin/Agent/CreateContract">افزودن قرارداد</a></li>
+                            <li><a href="/Admin/Agent/ContractList">لیست قرارداد</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a><i class="fa fa-graduation-cap"></i> مدیریت نمایندگی ها <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/Admin/Operative">لیست نمایندگی ها</a></li>
+                            <li><a href="/Admin/Operative/CreateOperative">افزودن نمایندگی </a></li>
+                            <li><a href="/Admin/Operative/CreateOperativeContract">افزودن قرارداد</a></li>
+                            <li><a href="/Admin/Operative/OperativeContractList">لیست قرارداد</a></li>
                         </ul>
                     </li>
 

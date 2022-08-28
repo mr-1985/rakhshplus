@@ -176,3 +176,14 @@ C:\Users\payetakht\source\repos\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.Dot
 C:\Users\payetakht\source\repos\MyShop\MyShop.Web\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\payetakht\source\repos\MyShop\MyShop.Web\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\MyShop.Web.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Operative\Index.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Operative\CreateOperative.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Operative\AddOperativeDocument.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Operative\ShowOperativeDocuments.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Operative\EditOperative.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Contract\Index.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Contract\CreateContract.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Agent\CreateContract.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Agent\ContractList.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Operative\CreateOperativeContract.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Operative\OperativeContractList.cshtml.g.cs

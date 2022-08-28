@@ -15,17 +15,6 @@
             <li>
                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
-            @*<li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                <li>
-                <a href="#">تنظیمات 1</a>
-                </li>
-                <li>
-                <a href="#">تنظیمات 2</a>
-                </li>
-                </ul>
-                </li>*@
             <li>
                 <a class="close-link"><i class="fa fa-close"></i></a>
             </li>
@@ -34,7 +23,7 @@
     </div>
     <div class="x_content">
         <form method="post" enctype="multipart/form-data">
-            <input type="hidden" asp-for="Agent.AgentId"/>
+            <input type="hidden" asp-for="Agent.AgentId" />
             <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <div class="form-group has-feedback">
@@ -43,14 +32,16 @@
                         <span asp-validation-for="Agent.Name" class="text-danger"></span>
                     </div>
 
-                   @* <div class="form-group has-feedback">
-                        <input asp-for="Agent.Ostan" type="text" class="form-control has-feedback-left" required="" placeholder="استان">
+                    <div class="form-group has-feedback">
+                        <select asp-items="@(ViewData["province"] as SelectList)" class="form-control" asp-for="Agent.Ostan" id="OstanId"></select>
+
                         <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
                         <span asp-validation-for="Agent.Ostan" class="text-danger"></span>
-                    </div>*@
+                    </div>
 
                     <div class="form-group has-feedback">
-                        <input asp-for="Agent.City" type="text" class="form-control has-feedback-left" required="" placeholder="شهر">
+                        <select asp-items="@(ViewData["City"] as SelectList)" class="form-control" asp-for="Agent.City"></select>
+
                         <span class="fa fa-info form-control-feedback left" aria-hidden="true"></span>
                         <span asp-validation-for="Agent.City" class="text-danger"></span>
                     </div>
@@ -115,3 +106,22 @@
         </form>
     </div>
 </div>
+
+@section Scripts{
+
+<script>
+    $("#OstanId").change(function () {
+
+        $("#Agent_City").empty();
+        $.getJSON("/home/GetCityByOstanId/" + $("#OstanId :selected").val(),
+            function (data) {
+                $.each(data,
+                    function () {
+                        $("#Agent_City")
+                            .append('<option value=' + this.value + '>' + this.text + '</option>');
+                    });
+            });
+    });
+</script>
+
+}
