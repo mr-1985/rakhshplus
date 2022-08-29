@@ -12,8 +12,14 @@ namespace MyShop.Core.Services.Interfaces
     {
         bool IsExistUserName(string userName);
         bool IsExistEmail(string email);
+        bool IsExistMobile(string mobile);
         User LoginUser(LoginViewModel login);
         SideBarAdminPanelViewModel GetAdminPanelSideBarData(string username);
         int GetUserIdByUserName(string userName);
+        List<User> GetAllUsers();
+        UsersDocument GetDocumentByUserId(int userId);
+        int AddUserFromAdmin(CreateUserViewModel model);
+        int AddUser(User user);
+        int AddUserDocument(int userId, string fileName, string term);
     }
 }

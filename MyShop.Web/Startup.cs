@@ -70,6 +70,7 @@ namespace MyShop.Web
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IAgentService, AgentService>();
+            services.AddTransient<IPermissionService, PermissionService>();
             #endregion
         }
 

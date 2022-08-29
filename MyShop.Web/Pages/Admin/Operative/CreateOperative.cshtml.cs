@@ -44,7 +44,7 @@ namespace MyShop.Web.Pages.Admin.Operative
             _agentService.AddOperative(Operative);
             //return RedirectToPage("Index");
 
-            return Redirect("/Admin/Agent/AddOperativeDocument/" + Operative.OperativeId);
+            return Redirect("/Admin/Operative/AddOperativeDocument/" + Operative.OperativeId);
         }
 
     }

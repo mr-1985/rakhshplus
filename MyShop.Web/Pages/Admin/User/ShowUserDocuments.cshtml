@@ -1,0 +1,124 @@
+﻿@page "{id}"
+@model MyShop.Web.Pages.Admin.User.ShowUserDocumentsModel
+
+@{
+    ViewData["Title"] = "مدارک کاربر ";
+    Layout = "Shared/_AdminLayout";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    مدارک کاربر
+                </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                <div class="row">
+                    <div class="col-md-55">
+                        <div class="thumbnail">
+                            <div class="image view view-first">
+                                <img style="width: 100%; display: block;" src="/UserDocument/@Model.UsersDocument.FrontNationalImage" alt="image">
+                                <div class="mask">
+                                    <p>تصویر روی کارت ملی</p>
+                                    <div class="tools tools-bottom">
+                                        <a href="/UserDocument/@Model.UsersDocument.FrontNationalImage" target="_blank"><i class="fa fa-download"></i></a>
+                                        @*<a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="caption">
+                                <p>تصویر روی کارت ملی </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-55">
+                        <div class="thumbnail">
+                            <div class="image view view-first">
+                                <img style="width: 100%; display: block;" src="/UserDocument/@Model.UsersDocument.BackNationalImage" alt="image">
+                                <div class="mask">
+                                    <p>تصویر پشت کارت ملی</p>
+                                    <div class="tools tools-bottom">
+                                        <a href="/UserDocument/@Model.UsersDocument.BackNationalImage" target="_blank"><i class="fa fa-download"></i></a>
+                                        @*<a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="caption">
+                                <p>تصویر پشت کارت ملی</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-55">
+                        <div class="thumbnail">
+                            <div class="image view view-first">
+                                <img style="width: 100%; display: block;" src="/UserDocument/@Model.UsersDocument.FrontShenasnamehImage" alt="image">
+                                <div class="mask">
+                                    <p>تصویر صفحه اول شناسنامه</p>
+                                    <div class="tools tools-bottom">
+                                        <a href="/UserDocument/@Model.UsersDocument.FrontShenasnamehImage" target="_blank"><i class="fa fa-download"></i></a>
+                                        @* <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="caption">
+                                <p>تصویر صفحه اول شناسنامه </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-55">
+                        <div class="thumbnail">
+                            <div class="image view view-first">
+                                <img style="width: 100%; display: block;" src="/UserDocument/@Model.UsersDocument.DescriptionShenasnamehImage" alt="image">
+                                <div class="mask">
+                                    <p>تصویر صفحه توضیحات شناسنامه </p>
+                                    <div class="tools tools-bottom">
+                                        <a href="/UserDocument/@Model.UsersDocument.DescriptionShenasnamehImage" target="_blank"><i class="fa fa-download"></i></a>
+                                        @*<a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="caption">
+                                <p>تصویر صفحه توضیحات شناسنامه </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-55">
+                        <div class="thumbnail">
+                            <div class="image view view-first">
+                                <img style="width: 100%; display: block;" src="/UserDocument/@Model.UsersDocument.PersonalImage" alt="image">
+                                <div class="mask">
+                                    <p>عکس پرسنلی 4*3</p>
+                                    <div class="tools tools-bottom">
+                                        <a href="/UserDocument/@Model.UsersDocument.PersonalImage" target="_blank"><i class="fa fa-download"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="caption">
+                                <p>عکس پرسنلی 4*3 </p>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="button" value="بازگشت" onclick="location='/Admin/User/Index'" class="btn btn-success" />

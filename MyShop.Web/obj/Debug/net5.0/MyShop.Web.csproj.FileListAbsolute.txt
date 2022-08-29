@@ -187,3 +187,5 @@ C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\A
 C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Agent\ContractList.cshtml.g.cs
 C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Operative\CreateOperativeContract.cshtml.g.cs
 C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Operative\OperativeContractList.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\User\ShowUserDocuments.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\User\CreateUserDocument.cshtml.g.cs
