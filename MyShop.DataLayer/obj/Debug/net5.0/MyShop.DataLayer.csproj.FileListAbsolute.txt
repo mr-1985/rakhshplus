@@ -12,4 +12,3 @@ C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\MyShop.
 C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\ref\MyShop.DataLayer.dll
 C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\MyShop.DataLayer.pdb
 C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\MyShop.DataLayer.genruntimeconfig.cache
-C:\Users\payetakht\source\repos\MyShop\MyShop.DataLayer\obj\Debug\net5.0\MyShop.DataLayer.csproj.AssemblyReference.cache

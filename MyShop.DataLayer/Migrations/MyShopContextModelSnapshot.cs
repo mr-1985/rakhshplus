@@ -78,6 +78,9 @@ namespace MyShop.DataLayer.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<int>("StoreId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TelePhone")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -235,10 +238,18 @@ namespace MyShop.DataLayer.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<int>("QuantityInStock")
                         .HasColumnType("int");
 
+                    b.Property<int>("StoreId")
+                        .HasColumnType("int");
+
                     b.HasKey("ItemId");
+
+                    b.HasIndex("StoreId");
 
                     b.ToTable("Items");
                 });
@@ -301,6 +312,9 @@ namespace MyShop.DataLayer.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("StoreId")
+                        .HasColumnType("int");
 
                     b.Property<string>("TelePhone")
                         .IsRequired()
@@ -422,28 +436,37 @@ namespace MyShop.DataLayer.Migrations
 
             modelBuilder.Entity("MyShop.DataLayer.Entities.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("ItemId")
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ItemId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ProductImageName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
-                    b.HasIndex("ItemId")
-                        .IsUnique();
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("ItemId");
 
                     b.ToTable("Products");
                 });
@@ -504,6 +527,42 @@ namespace MyShop.DataLayer.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("RolePermissions");
+                });
+
+            modelBuilder.Entity("MyShop.DataLayer.Entities.Store", b =>
+                {
+                    b.Property<int>("StoreId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AgentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("OperativeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StoreName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("StoreId");
+
+                    b.HasIndex("AgentId");
+
+                    b.HasIndex("OperativeId");
+
+                    b.ToTable("Stores");
                 });
 
             modelBuilder.Entity("MyShop.DataLayer.Entities.User", b =>
@@ -683,7 +742,8 @@ namespace MyShop.DataLayer.Migrations
 
                     b.HasKey("UserDocumentId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("UsersDocuments");
                 });
@@ -715,6 +775,17 @@ namespace MyShop.DataLayer.Migrations
                         .HasForeignKey("ProvinceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MyShop.DataLayer.Entities.Item", b =>
+                {
+                    b.HasOne("MyShop.DataLayer.Entities.Store", "Store")
+                        .WithMany("Items")
+                        .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Store");
                 });
 
             modelBuilder.Entity("MyShop.DataLayer.Entities.Operative", b =>
@@ -777,10 +848,8 @@ namespace MyShop.DataLayer.Migrations
             modelBuilder.Entity("MyShop.DataLayer.Entities.Product", b =>
                 {
                     b.HasOne("MyShop.DataLayer.Entities.Item", "Item")
-                        .WithOne("Product")
-                        .HasForeignKey("MyShop.DataLayer.Entities.Product", "ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Product")
+                        .HasForeignKey("ItemId");
 
                     b.Navigation("Item");
                 });
@@ -802,6 +871,21 @@ namespace MyShop.DataLayer.Migrations
                     b.Navigation("Permission");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("MyShop.DataLayer.Entities.Store", b =>
+                {
+                    b.HasOne("MyShop.DataLayer.Entities.Agent", "Agent")
+                        .WithMany("Store")
+                        .HasForeignKey("AgentId");
+
+                    b.HasOne("MyShop.DataLayer.Entities.Operative", "Operative")
+                        .WithMany("Store")
+                        .HasForeignKey("OperativeId");
+
+                    b.Navigation("Agent");
+
+                    b.Navigation("Operative");
                 });
 
             modelBuilder.Entity("MyShop.DataLayer.Entities.User", b =>
@@ -839,8 +923,8 @@ namespace MyShop.DataLayer.Migrations
             modelBuilder.Entity("MyShop.DataLayer.Entities.UsersDocument", b =>
                 {
                     b.HasOne("MyShop.DataLayer.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("UsersDocument")
+                        .HasForeignKey("MyShop.DataLayer.Entities.UsersDocument", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -850,6 +934,8 @@ namespace MyShop.DataLayer.Migrations
             modelBuilder.Entity("MyShop.DataLayer.Entities.Agent", b =>
                 {
                     b.Navigation("AgentDocument");
+
+                    b.Navigation("Store");
 
                     b.Navigation("Users");
                 });
@@ -869,6 +955,8 @@ namespace MyShop.DataLayer.Migrations
             modelBuilder.Entity("MyShop.DataLayer.Entities.Operative", b =>
                 {
                     b.Navigation("OperativeDocument");
+
+                    b.Navigation("Store");
 
                     b.Navigation("Users");
                 });
@@ -897,11 +985,18 @@ namespace MyShop.DataLayer.Migrations
                     b.Navigation("UserRoles");
                 });
 
+            modelBuilder.Entity("MyShop.DataLayer.Entities.Store", b =>
+                {
+                    b.Navigation("Items");
+                });
+
             modelBuilder.Entity("MyShop.DataLayer.Entities.User", b =>
                 {
                     b.Navigation("Orders");
 
                     b.Navigation("UserRoles");
+
+                    b.Navigation("UsersDocument");
                 });
 #pragma warning restore 612, 618
         }

@@ -18,6 +18,7 @@ namespace MyShop.Web.Pages.Admin.User
         public void OnGet(int id)
         {
             UsersDocument = _userService.GetDocumentByUserId(id);
+            ViewData["UserId"] = id;
         }
     }
 }

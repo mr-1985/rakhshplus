@@ -33,6 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "MyShop.Web/1.0.0": {
         "dependencies": {
+          "MD.BootstrapPersianDateTimePicker": "2.3.0",
           "Microsoft.EntityFrameworkCore": "5.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.8",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.8",
@@ -328,12 +329,24 @@
           "MyShop.Web.dll": {}
         }
       },
+      "bootstrap/3.3.1": {
+        "dependencies": {
+          "jQuery": "1.9.0"
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {
             "assemblyVersion": "2.8.0.0",
             "fileVersion": "2.8.26.1919"
           }
+        }
+      },
+      "jQuery/1.9.0": {},
+      "MD.BootstrapPersianDateTimePicker/2.3.0": {
+        "dependencies": {
+          "bootstrap": "3.3.1",
+          "jQuery": "1.9.0"
         }
       },
       "Microsoft.AspNetCore/2.2.0": {
@@ -4380,12 +4393,33 @@
       "serviceable": false,
       "sha512": ""
     },
+    "bootstrap/3.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+OganGYT1i1uIwZPa+AQUT3F3XxWUgFpFoYj+ujM4U5ZJYywW+nEl3v+A5BElLZNbk0FkFFZV4JixIfL6Q4xfg==",
+      "path": "bootstrap/3.3.1",
+      "hashPath": "bootstrap.3.3.1.nupkg.sha512"
+    },
     "Humanizer.Core/2.8.26": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "path": "humanizer.core/2.8.26",
       "hashPath": "humanizer.core.2.8.26.nupkg.sha512"
+    },
+    "jQuery/1.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bS6OGSd/QL39vKKhATpeehgZDCzV6foRJ52EocEGAB29VetwXkQHN6KQIBlBbW9VJzuHr+rQxHYZ13MnPGQ/vw==",
+      "path": "jquery/1.9.0",
+      "hashPath": "jquery.1.9.0.nupkg.sha512"
+    },
+    "MD.BootstrapPersianDateTimePicker/2.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PkC/9S/qBG9jmc8gQJ2mjN3+DPdXf4bI5pDsCxMaNs0RFUPlHHYpYPqq274qoYemFg/jEI98GZqZ7DL7xz4OQw==",
+      "path": "md.bootstrappersiandatetimepicker/2.3.0",
+      "hashPath": "md.bootstrappersiandatetimepicker.2.3.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore/2.2.0": {
       "type": "package",

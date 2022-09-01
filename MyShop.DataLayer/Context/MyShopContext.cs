@@ -40,8 +40,8 @@ namespace MyShop.DataLayer.Context
         public DbSet<Contract> Contracts { get; set; }
         public DbSet<Operative> Operatives { get; set; }
         public DbSet<OperativeDocument> OperativeDocuments { get; set; }
-        //public DbSet<AgentType> AgentType { get; set; }
-       
+        public DbSet<Store> Stores { get; set; }
+
 
         #endregion
 

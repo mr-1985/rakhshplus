@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MyShop.Core.Convertors;
 using MyShop.Core.Generators;
 using MyShop.Core.Security;
@@ -57,6 +58,11 @@ namespace MyShop.Core.Services
         public int GetUserIdByUserName(string userName)
         {
             return _context.Users.Single(u => u.UserName == userName).UserId;
+        }
+
+        public User GetUserByUserName(string username)
+        {
+            return _context.Users.SingleOrDefault(u => u.UserName == username);
         }
 
         public List<User> GetAllUsers()
@@ -115,7 +121,6 @@ namespace MyShop.Core.Services
             user.NationalCode=model.NationalCode;
             user.ShomareShenasnameh=model.ShomareShenasname;
             user.Tell=model.Phone;
-
             return AddUser(user);
         }
 
@@ -135,7 +140,7 @@ namespace MyShop.Core.Services
             {
                 if (term == "PersonalImage")
                 {
-                    if (result.PersonalImage != "media.jpg")
+                    if (result.PersonalImage != "avatar.jpg")
                     {
                         string deleteimagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserDocument", result.PersonalImage);
                         if (File.Exists(deleteimagePath))
@@ -148,7 +153,7 @@ namespace MyShop.Core.Services
 
                 if (term == "FrontNationalImage")
                 {
-                    if (result.PersonalImage != "media.jpg")
+                    if (result.PersonalImage != "avatar.jpg")
                     {
                         string deleteimagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserDocument", result.FrontNationalImage);
                         if (File.Exists(deleteimagePath))
@@ -161,7 +166,7 @@ namespace MyShop.Core.Services
 
                 if (term == "BackNationalImage")
                 {
-                    if (result.PersonalImage != "media.jpg")
+                    if (result.PersonalImage != "avatar.jpg")
                     {
                         string deleteimagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserDocument", result.BackNationalImage);
                         if (File.Exists(deleteimagePath))
@@ -174,7 +179,7 @@ namespace MyShop.Core.Services
 
                 if (term == "FrontShenasnamehImage")
                 {
-                    if (result.PersonalImage != "media.jpg")
+                    if (result.PersonalImage != "avatar.jpg")
                     {
                         string deleteimagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserDocument", result.FrontShenasnamehImage);
                         if (File.Exists(deleteimagePath))
@@ -187,7 +192,7 @@ namespace MyShop.Core.Services
 
                 if (term == "DescriptionShenasnamehImage")
                 {
-                    if (result.PersonalImage != "media.jpg")
+                    if (result.PersonalImage != "avatar.jpg")
                     {
                         string deleteimagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserDocument", result.DescriptionShenasnamehImage);
                         if (File.Exists(deleteimagePath))
@@ -263,6 +268,103 @@ namespace MyShop.Core.Services
                 _context.SaveChanges();
                 return 1;
             }
+        }
+
+        public User GetUserById(int userId)
+        {
+            return _context.Users.Find(userId);
+        }
+
+        public void UpdateUser(User user)
+        {
+
+            user.CreateDate=DateTime.Now;
+            user.IsActive = true;
+            if (!string.IsNullOrEmpty(user.Password))
+            {
+                user.Password = PasswordHelper.EncodePasswordMd5(user.Password);
+            }
+
+            _context.Users.Update(user);
+            _context.SaveChanges();
+        }
+
+        public void DeleteUser(int userId)
+        {
+            var user = GetUserById(userId);
+            user.IsDelete = true;
+            UpdateUser(user);
+        }
+
+        public InformationUserPanelViewModel GetUserPanelInformation(string userName)
+        {
+            var user = GetUserByUserName(userName);
+            InformationUserPanelViewModel information = new InformationUserPanelViewModel();
+            information.UserName = user.UserName;
+            information.FirstName = user.FirstName;
+            information.LastName = user.LastName;
+            information.Email = user.Email;
+            information.RegisterDate = user.CreateDate;
+            information.Mobile = user.Mobile;
+           
+
+            return information;
+        }
+
+        public bool CompareOldPassword(string username, string oldPassword)
+        {
+            string hashOldPassword = PasswordHelper.EncodePasswordMd5(oldPassword);
+            return _context.Users.Any(u => u.UserName == username && u.Password == hashOldPassword);
+        }
+
+        public bool ComparePasswords(string password, string rePassword)
+        {
+            if (password == rePassword)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void ChangeUserPassword(string username, string newPassword)
+        {
+            var user = GetUserByUserName(username);
+            user.Password = PasswordHelper.EncodePasswordMd5(newPassword);
+            _context.Users.Update(user);
+            _context.SaveChanges();
+        }
+
+        public User GetUserForShowInProfile(string username)
+        {
+            return _context.Users.Include(u=>u.UsersDocument).FirstOrDefault(u => u.UserName == username);
+        }
+
+        public EditProfileViewModel GetDataForEditProfileUser(string username)
+        {
+            return _context.Users.Where(u => u.UserName == username).Select(u => new EditProfileViewModel()
+            {
+                UserId = u.UserId,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Mobile = u.Mobile,
+                Email = u.Email,
+                UserName = u.UserName,
+
+            }).Single();
+        }
+
+        public void EditProfile(string username, EditProfileViewModel profile)
+        {
+            var user = GetUserByUserName(username);
+            user.UserName = profile.UserName;
+            user.Email = profile.Email;
+            user.FirstName= profile.FirstName;
+            user.LastName= profile.LastName;
+            user.Mobile= profile.Mobile;
+           
+            _context.Users.Update(user);
+            _context.SaveChanges();
         }
     }
 }

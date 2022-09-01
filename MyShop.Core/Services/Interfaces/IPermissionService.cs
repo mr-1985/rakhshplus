@@ -12,5 +12,7 @@ namespace MyShop.Core.Services.Interfaces
         List<Role> GetRoles();
         List<Role> GetFilterRoles(int roleId);
         void AddRolesToUser(List<int> roleIds, int userId);
+        void EditRolesUser(int userId, List<int> rolesId);
+
     }
 }

@@ -273,6 +273,18 @@ namespace MyShop.Web.Controllers
             return Json(" Diesel Generators Successfully Deleted.");
         }
 
+        
+        public IActionResult DeleteUser(string[] userId)
+        {
+            foreach (string id in userId)
+            {
+                _userService.DeleteUser(Convert.ToInt32(id));
+            }
+
+            return Json(" Diesel Generators Successfully Deleted.");
+        }
+
+
         public IActionResult GetCityByOstanId(int id)
         {
             List<SelectListItem> list = new List<SelectListItem>()

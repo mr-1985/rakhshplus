@@ -43,5 +43,14 @@ namespace MyShop.Core.Services
 
             _context.SaveChanges();
         }
+
+        public void EditRolesUser(int userId, List<int> rolesId)
+        {
+            //Delete All Roles User
+            _context.UserRoles.Where(r => r.UserId == userId).ToList().ForEach(r => _context.UserRoles.Remove(r));
+
+            //Add New Roles
+            AddRolesToUser(rolesId, userId);
+        }
     }
 }

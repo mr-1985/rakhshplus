@@ -36,12 +36,12 @@ namespace MyShop.Core.ViewModels
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
         public string FatherName { get; set; }
 
-        [Display(Name = "محل صدور ")]
+        [Display(Name = "استان")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
         public string Province { get; set; }
 
-        [Display(Name = "محل صدور ")]
+        [Display(Name = "شهر  ")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
         public string City { get; set; }
@@ -57,7 +57,6 @@ namespace MyShop.Core.ViewModels
         public string ShomareShenasname { get; set; }
 
         [Display(Name = "جنسیت ")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
         public string Gendre { get; set; }
 
@@ -76,7 +75,7 @@ namespace MyShop.Core.ViewModels
         [MaxLength(50, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
         public string Address { get; set; }
 
-        [Display(Name = "تلفن ثابت")]
+        [Display(Name = "کد پستی")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(50, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
         public string PostalCode { get; set; }
@@ -89,18 +88,76 @@ namespace MyShop.Core.ViewModels
         [EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نیست")]
         public string Email { get; set; }
 
-
-
         [Display(Name = "کلمه عبور")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
         public string Password { get; set; }
 
-
-
-
         public bool IsActive { get; set; }
 
         public IFormFile UserAvatar { get; set; }
+    }
+
+    public class InformationUserPanelViewModel
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string UserName { get; set; }
+        public string UserImage { get; set; }
+        
+        public string Email { get; set; }
+        public DateTime RegisterDate { get; set; }
+        public string Mobile { get; set; }
+       
+    }
+
+    public class ChangePasswordViewModel
+    {
+        [Display(Name = "کلمه عبور فعلی")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
+        public string OldPassword { get; set; }
+
+        [Display(Name = "کلمه عبور جدید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
+        public string Password { get; set; }
+
+        [Display(Name = "تکرار کلمه عبور جدید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
+        //[Compare("Password", ErrorMessage = "کلمه عبور مغایرت دارد")]
+        public string RePassword { get; set; }
+    }
+
+    public class EditProfileViewModel
+    {
+        public int UserId { get; set; }
+
+        [Display(Name = "نام")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "نام خانوادگی")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
+        public string LastName { get; set; }
+
+        [Display(Name = "نام کاربری")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
+        public string UserName { get; set; }
+
+        [Display(Name = "موبایل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(50, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
+        public string Mobile { get; set; }
+
+        [Display(Name = "ایمیل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
+        [EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نیست")]
+        public string Email { get; set; }
     }
 }

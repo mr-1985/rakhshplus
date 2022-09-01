@@ -9,12 +9,27 @@ namespace MyShop.DataLayer.Entities
 {
     public class Product
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        [MaxLength(50)]
+        [Key]
+        public int ProductId { get; set; }
+
+        [Display(Name = "نام ")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
+        public string ProductName { get; set; }
+
+        [Display(Name = "تصویر")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string ProductImageName { get; set; }
+
+        [Display(Name = "شرح ")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد.")]
         public string Description { get; set; }
-        public int ItemId { get; set; }
+
+        [Display(Name = "تاریخ ثبت ")]
+        public DateTime CreateDate { get; set; }
+        public bool IsDelete { get; set; }
+
 
         public Item Item { get; set; }
     }

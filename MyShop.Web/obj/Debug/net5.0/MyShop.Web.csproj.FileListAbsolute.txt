@@ -189,3 +189,10 @@ C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\A
 C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Operative\OperativeContractList.cshtml.g.cs
 C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\User\ShowUserDocuments.cshtml.g.cs
 C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\User\CreateUserDocument.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\User\EditUser.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\User\EditUserDocuments.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\UserPanel\Profile.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\UserPanel\ChangePassword.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\Admin\Product\EditProduct.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\UserPanel\EditProfileImage.cshtml.g.cs
+C:\Users\payetakht\source\repos\MyShop\MyShop.Web\obj\Debug\net5.0\Razor\Pages\UserPanel\EditProfile.cshtml.g.cs

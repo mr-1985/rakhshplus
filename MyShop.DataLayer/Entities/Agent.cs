@@ -12,6 +12,9 @@ namespace MyShop.DataLayer.Entities
         [Key]
         public int AgentId { get; set; }
 
+        [Required]
+        public int StoreId { get; set; }
+
         //[Display(Name = "نوع نماینده")]
         //[Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         //public int AgentTypeId { get; set; }
@@ -76,7 +79,7 @@ namespace MyShop.DataLayer.Entities
         public AgentDocument AgentDocument { get; set; }
 
         public Contract Contract { get; set; }
-        //public AgentType AgentType { get; set; }
+        public List<Store> Store { get; set; }
         #endregion
 
     }

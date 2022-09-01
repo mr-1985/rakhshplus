@@ -449,7 +449,6 @@ namespace MyShop.Core.Services
 
 
                 result.CreateDate = DateTime.Now;
-                ;
                 _context.OperativeDocuments.Update(result);
                 _context.SaveChanges();
                 return 1;

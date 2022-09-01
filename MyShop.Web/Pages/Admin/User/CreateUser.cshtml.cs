@@ -37,35 +37,35 @@ namespace MyShop.Web.Pages.Admin.User
             ViewData["mahaleSodour"] = new SelectList(city, "Value", "Text");
 
 
-            //ViewData["Roles"] = _permissionService.GetRoles();
+            ViewData["Roles"] = _permissionService.GetRoles();
         }
 
-        public IActionResult OnPost(string gendre)
+        public IActionResult OnPost(List<int> SelectedRoles,string gendre)
         {
             if (!ModelState.IsValid)
             {
-                //ViewData["Roles"] = _permissionService.GetRoles();
                 return Page();
             }
 
+            ViewData["Roles"] = _permissionService.GetRoles();
             if (_userService.IsExistUserName(FixedText.SkipLetter(User.UserName)))
             {
                 ModelState.AddModelError("User.UserName", "نام کاربری وارد شده تکراری می باشد");
-                ViewData["Roles"] = _permissionService.GetFilterRoles(3);
+
                 return Page();
             }
 
             if (_userService.IsExistMobile(User.Mobile))
             {
                 ModelState.AddModelError("User.Mobile", "شماره موبایل وارد شده تکراری می باشد");
-                ViewData["Roles"] = _permissionService.GetFilterRoles(3);
+
                 return Page();
             }
 
             User.Gendre = gendre;
 
             int userId = _userService.AddUserFromAdmin(User);
-            //_permissionService.AddRolesToUser(selectedRoles, userId);
+            _permissionService.AddRolesToUser(SelectedRoles, userId);
             return Redirect("/Admin/User/CreateUserDocument/" + userId);
             
         }

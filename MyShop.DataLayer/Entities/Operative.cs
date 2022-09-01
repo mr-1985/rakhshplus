@@ -11,7 +11,7 @@ namespace MyShop.DataLayer.Entities
     {
         [Key]
         public int OperativeId { get; set; }
-        //public int ContractId { get; set; }
+        public int StoreId { get; set; }
 
         [Display(Name = "نام ")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -72,6 +72,7 @@ namespace MyShop.DataLayer.Entities
         public List<User> Users { get; set; }
         public OperativeDocument OperativeDocument { get; set; }
         public Contract Contract { get; set; }
+        public List<Store> Store { get; set; }
         #endregion
     }
 }

@@ -54,11 +54,11 @@
                     <li>
                         <a><i class="fa fa-user"></i> اطلاعات پروفایل <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">مشاهده پروفایل</a></li>
-                            <li><a href="#">ویرایش پروفایل</a></li>
-                            <li><a href="#">ویرایش کلمه عبور</a></li>
-                            <li><a href="#"> فاکتور ها</a></li>
-                            <li><a href="#">کیف پول</a></li>
+                            <li><a href="/UserPanel/Profile">مشاهده پروفایل</a></li>
+                           @* <li><a href="#">ویرایش پروفایل</a></li>*@
+                            <li><a href="/UserPanel/ChangePassword/">ویرایش کلمه عبور</a></li>
+                           @* <li><a href="#"> فاکتور ها</a></li>
+                            <li><a href="#">کیف پول</a></li>*@
                         </ul>
                     </li>
 
@@ -67,7 +67,8 @@
                         <a><i class="fa fa-users"></i> مدیریت کاربران <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="/Admin/User/">لیست کاربران</a></li>
-                            <li><a href="#">مدیریت نقش ها</a></li>
+                            <li><a href="/Admin/User/CreateUser">افزودن کاربر</a></li>
+                            @*<li><a href="#">مدیریت نقش ها</a></li>*@
                         </ul>
                     </li>
 
@@ -76,7 +77,7 @@
                         <a><i class="fa fa-graduation-cap"></i> مدیریت کالا <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="/Admin/Product">لیست کالاها</a></li>
-                            <li><a href="/Admin/Product/CreateProduct/">افزودن کالا</a></li>
+                            <li><a href="/Admin/Product/CreateProduct">افزودن کالا</a></li>
                         </ul>
                     </li>
 

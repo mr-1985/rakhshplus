@@ -95,8 +95,8 @@
                                     @user.CreateDate.ToShamsi()
                                 </td>
                                 <td class=" last">
-                                    @* <a href="/Admin/Agent/EditAgent/@agent.AgentId" class="btn btn-round btn-warning">ویرایش</a>
-                                        <a href="/Admin/Agent/ShowAgentDocuments/@agent.AgentId" class="btn btn-round btn-info">مدارک</a>*@
+                                    <a href="/Admin/User/EditUser/@user.UserId" class="btn btn-round btn-warning">ویرایش</a>
+                                    @* <a href="/Admin/Agent/ShowAgentDocuments/@agent.AgentId" class="btn btn-round btn-info">مدارک</a>*@
                                     <a href="/Admin/User/ShowUserDocuments/@user.UserId" class="btn btn-round btn-info">مدارک</a>
                                 </td>
                             </tr>
@@ -124,33 +124,33 @@
             $(this).prop('checked'));
     });
 
-    //$("#delete").click(function() {
-    //    var selectedIDs = new Array();
+    $("#delete").click(function() {
+        var selectedIDs = new Array();
 
-    //    $('input:checkbox.checkBox').each(function() {
-    //        if ($(this).prop('checked')) {
-    //            selectedIDs.push($(this).val());
-    //        }
-    //    });
+        $('input:checkbox.checkBox').each(function() {
+            if ($(this).prop('checked')) {
+                selectedIDs.push($(this).val());
+            }
+        });
 
-    //    $.ajax({
-    //        type: "POST",
-    //        url: "/Home/DeleteAgent",
-    //        data: { "agentId": selectedIDs },
+        $.ajax({
+            type: "POST",
+            url: "/Home/DeleteUser",
+            data: { "userId": selectedIDs },
 
-    //        success: function(response) {
-    //            window.location.href = "/Admin/Agent";
-    //        },
-    //        failure: function(response) {
-    //            alert(response.responseText);
-    //        },
-    //        error: function(response) {
-    //            alert(response.responseText);
-    //        }
+            success: function(response) {
+                window.location.href = "/Admin/User";
+            },
+            failure: function(response) {
+                alert(response.responseText);
+            },
+            error: function(response) {
+                alert(response.responseText);
+            }
 
-    //    });
+        });
 
-    //});
+    });
 
 </script>
 

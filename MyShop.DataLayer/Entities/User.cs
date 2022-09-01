@@ -116,6 +116,7 @@ namespace MyShop.DataLayer.Entities
 
         public int? AgentId { get; set; }
         public Agent Agent { get; set; }
+        public UsersDocument UsersDocument { get; set; }
         public List<Order> Orders { get; set; }
         public  List<UserRole> UserRoles { get; set; }
 
