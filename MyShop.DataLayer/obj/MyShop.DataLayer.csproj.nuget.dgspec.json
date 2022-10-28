@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\payetakht\\source\\repos\\MyShop\\MyShop.DataLayer\\MyShop.DataLayer.csproj": {}
+    "C:\\Users\\mohsen\\source\\repos\\rakhshplus\\MyShop.DataLayer\\MyShop.DataLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\payetakht\\source\\repos\\MyShop\\MyShop.DataLayer\\MyShop.DataLayer.csproj": {
+    "C:\\Users\\mohsen\\source\\repos\\rakhshplus\\MyShop.DataLayer\\MyShop.DataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\payetakht\\source\\repos\\MyShop\\MyShop.DataLayer\\MyShop.DataLayer.csproj",
+        "projectUniqueName": "C:\\Users\\mohsen\\source\\repos\\rakhshplus\\MyShop.DataLayer\\MyShop.DataLayer.csproj",
         "projectName": "MyShop.DataLayer",
-        "projectPath": "C:\\Users\\payetakht\\source\\repos\\MyShop\\MyShop.DataLayer\\MyShop.DataLayer.csproj",
-        "packagesPath": "C:\\Users\\payetakht\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\payetakht\\source\\repos\\MyShop\\MyShop.DataLayer\\obj\\",
+        "projectPath": "C:\\Users\\mohsen\\source\\repos\\rakhshplus\\MyShop.DataLayer\\MyShop.DataLayer.csproj",
+        "packagesPath": "C:\\Users\\mohsen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mohsen\\Source\\Repos\\rakhshplus\\MyShop.DataLayer\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\payetakht\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\mohsen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -65,7 +61,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -74,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.108\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
